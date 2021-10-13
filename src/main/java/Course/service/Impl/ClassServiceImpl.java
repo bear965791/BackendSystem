@@ -15,12 +15,12 @@ import Course.util.HibernateUtils;
 public class ClassServiceImpl implements ClassService {
 	
 	SessionFactory factory;
-	VideoDao classDao;
+	VideoDao videoDao;
 
 	
 	public ClassServiceImpl() {
 		factory = HibernateUtils.getSessionFactory();
-		classDao = new VideoDaoImpl__Hibernate();
+		videoDao = new VideoDaoImpl__Hibernate();
 	}
 
 	
@@ -31,7 +31,7 @@ public class ClassServiceImpl implements ClassService {
 		Transaction tx = null;
 		try {
 			tx = session.beginTransaction();
-			bean = classDao.findById(pk);
+			bean = videoDao.findById(pk);
 			tx.commit();
 		}catch(Exception e) {
 			if(tx != null) {
@@ -51,7 +51,7 @@ public class ClassServiceImpl implements ClassService {
 		Transaction tx = null;
 		try {
 			tx = session.beginTransaction();
-			list = classDao.getPageCourse();
+			list = videoDao.getPageCourse();
 			tx.commit();
 		}catch(Exception e) {
 			if(tx != null) {
@@ -69,7 +69,7 @@ public class ClassServiceImpl implements ClassService {
 		Transaction tx = null;
 		try {
 			tx = session.beginTransaction();
-			classDao.delete(pk);
+			videoDao.delete(pk);
 			tx.commit();
 		}catch(Exception e) {
 			if(tx != null) {
@@ -81,6 +81,47 @@ public class ClassServiceImpl implements ClassService {
 		return;
 		
 	}
-	
+
+
+	@Override
+	public void save(VideoBean vb) {
+		Session session = factory.getCurrentSession();
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			videoDao.save(vb);
+			tx.commit();
+		}catch(Exception e) {
+			if(tx != null) {
+				tx.rollback();
+				e.printStackTrace();
+				throw new RuntimeException(e);				
+			}
+		}
+		return;
+		
+	}
+
+
+	@Override
+	public void update(VideoBean mem) {
+		Session session = factory.getCurrentSession();
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			videoDao.save(mem);
+			tx.commit();
+		}catch(Exception e) {
+			if(tx != null) {
+				tx.rollback();
+				e.printStackTrace();
+				throw new RuntimeException(e);				
+			}
+		}
+		return;
+		
+	}
+
+
 
 }

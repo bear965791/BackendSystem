@@ -10,7 +10,5 @@ public interface VideoDao {
 	public void save(VideoBean vb);
 	public void update(VideoBean mem);
 	public void delete(int pk) ;
-	public List<VideoBean> findAll();
-	
 
 }

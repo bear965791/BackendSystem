@@ -49,17 +49,7 @@ public class VideoDaoImpl__Hibernate implements VideoDao {
 	}	
 	
 
-	@Override
-	public List<VideoBean> findAll() {
-		String hql = "FROM VideoBean"; 
-		List<VideoBean> allVideo = null;
-		Session session = factory.getCurrentSession();
-		allVideo = session.createQuery(hql, VideoBean.class)
-				            .getResultList();
-		return allVideo;
-	}
 	
-
 	@Override
 	public void delete(int videoId) {
 		Session session = factory.getCurrentSession();
@@ -80,6 +70,8 @@ public class VideoDaoImpl__Hibernate implements VideoDao {
 		video = (VideoBean) session.get(VideoBean.class, videopk);
 		return video;
 	}
+	
+
 	
 	@Override
 	public List<VideoBean> getPageCourse() {
