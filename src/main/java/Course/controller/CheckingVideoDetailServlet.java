@@ -15,8 +15,8 @@ import Course.service.ClassService;
 import Course.service.Impl.ClassServiceImpl;
 
 
-@WebServlet("/backStage/CoursePage")
-public class VideoPageServlet extends HttpServlet {
+@WebServlet("/course/CheckingVideoDetail.do")
+public class CheckingVideoDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -24,16 +24,17 @@ public class VideoPageServlet extends HttpServlet {
 		doPost(request, response);
 	}
 	
-	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+		
+		String videoId = request.getParameter("videoId");
+		int id= Integer.parseInt(videoId.trim());
+		
 		ClassService classService = new ClassServiceImpl();
-		
-		List<VideoBean> videoList = classService.getPageCourse();
+		VideoBean videoBean = classService.findById(id);
 	
-		request.setAttribute("product_video", videoList);
+		request.setAttribute("VideoBean",videoBean);
 		
-		RequestDispatcher rd = request.getRequestDispatcher("/course/notcheckList.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/course/checking_class_detail.jsp");
 		
 		rd.forward(request, response);
 		return;

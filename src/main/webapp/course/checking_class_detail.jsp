@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c"   uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -79,52 +79,52 @@
                                 <ul class="list-unstyled">
                                     <li>
                                         <label class="col-sm-2 col-form-label-lg">申請教練:</label> 
-                                        <span>Brian</span>
+                                        <span>${VideoBean.coach}</span>
                                     </li>
                                     <li>
                                         <label class="col-sm-2 col-form-label-lg">申請狀態:</label> 
-                                        <span>待審核</span>
+                                        <span>${VideoBean.checked}</span>
                                     </li>
                                     <li>
                                         <label class="col-sm-2 col-form-label-lg">申請時間:</label> 
-                                        <span>2021/08/09</span>
+                                        <span>${VideoBean.time}</span>
                                     </li>
                                     <li>
                                         <label class="col-sm-2 col-form-label-lg">審核時間:</label> 
-                                        <span>待審核</span>
+                                        <span>${VideoBean.checked}</span>
                                     </li>
                                 </ul>
                             </div>
                         </div>
-    
-                        <ul class="list-unstyled ms-4 mb-5">
+                       
+                        <ul class="list-unstyled ms-4 mb-5"">
                             <li>
                                 <label class="col-sm-2 col-form-label-lg">課程名稱:</label> 
-                                <span>tabata爆汗核心健身</span>
+                                <span>${VideoBean.name}</span>
                             </li>
                             <li>
                                 <label class="col-sm-2 col-form-label-lg">器材需求:</label> 
-                                <span>瑜珈墊</span>
+                                <span>${VideoBean.equipment}</span>
                             </li>
                             <li>
                                 <label class="col-sm-2 col-form-label-lg">課程適合哪些人:</label> 
-                                <span>想學瑜伽的人</span>
+                                <span>${VideoBean.level}</span>
                                 </li>
                                 <li>
                                 <label class="col-sm-2 col-form-label-lg">課程分類:</label> 
-                                <span>上半身</span>
-                                <span>腿部</span>
+                                <span>${VideoBean.category}</span>
+                                <span>${VideoBean.category}</span>
                             </li>
                             <li>
                                 <label class="col-sm-2 col-form-label-lg">價錢:</label> 
-                                <sapn>NT$1000</sapn>
+                                <sapn>${VideoBean.price}</sapn>
                             </li>
                             <li>
                                 <label class="col-form-label-lg">課程介紹:</label> 
-                                <p class="pe-5">課程介紹課程介紹課程介紹課程介紹課程介紹課程介紹課程介紹課程介紹課課程介紹課程介紹課程介紹課程介紹課程介紹課程介紹課程介紹課程介紹課課程介紹課程介紹課程介紹課程介紹課程介紹課程介紹課程介紹課程介紹課課程介紹課程介紹課程介紹課程介紹課程介紹課程介紹課程介紹課程介紹課課程介紹課程介紹課程介紹課程介紹課程介紹課程介紹課程介紹課程介紹課課程介紹課程介紹課程介紹課程介紹課程介紹課程介紹課程介紹課程介紹課課程介紹課程介紹課程介紹課程介紹課程介紹課程介紹課程介紹課程介紹課課程介紹課程介紹課程介紹課程介紹課程介紹課程介紹課程介紹課程介紹課課程介紹課程介紹課程介紹課程介紹課程介紹課程介紹課程介紹課程介紹課課程介紹課程介紹課程介紹課程介紹課程介紹課程介紹課程介紹課程介紹課程介紹課程介紹課程介紹課程介紹課程介紹課程介紹課程介紹課程介紹課程介紹</p>
+                                <p class="pe-5">${VideoBean.videoInfo}</p>
                             </li>
                         </ul>
-
+					
                         <div class="d-flex justify-content-center mb-5">
                             <button type="button" class="btn btn-outline-primary me-2 ps-4 pe-4 me-5">通過</button>
                             <button type="button" class="btn btn-outline-danger ms-2  ps-4 pe-4">拒絕</button>

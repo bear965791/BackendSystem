@@ -149,7 +149,7 @@
 		                                <td>${entry.time}</td>
 		                                <td>${entry.checked}</td>
 		                                <td>
-		                                  <a href="<c:url value='/course/checking_class_detail.jsp' />" class="btn btn-outline-dark">
+		                                  <a href="<c:url value='/course/CheckingVideoDetail.do?videoId=${entry.videoId}' />" class="btn btn-outline-dark">
 		                                    <span>查看</span>
 		                                  </a>
 		                                </td>
