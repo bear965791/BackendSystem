@@ -33,10 +33,10 @@
                       </figure>                      
                     </div>
                     <div class="list-group rounded-0 p-4">
-                      <a href="./OrderBackend.html" class="rounded-3 list-group-item list-group-item-action mb-3 p-4 fs-5 text-center">訂單管理</a>
-                      <a href="./courseList.html" class="rounded-3 list-group-item list-group-item-action mb-3 p-4 fs-5 text-center">課程管理</a>
-                      <a href="./MemberBackend.html" class="rounded-3 list-group-item list-group-item-action mb-3 p-4 fs-5 text-center">會員管理</a>
-                      <a href="#" class="rounded-3 list-group-item list-group-item-action mb-3 p-4 fs-5 text-center">後台權限管理</a>
+                        <a href="./OrderBackend.html" class="rounded-3 list-group-item list-group-item-action mb-3 p-4 fs-5 text-center">訂單管理</a>
+                        <a href="./courseList.html" class="rounded-3 list-group-item list-group-item-action mb-3 p-4 fs-5 text-center">課程管理</a>
+                        <a href="./MemberBackend.html" class="rounded-3 list-group-item list-group-item-action mb-3 p-4 fs-5 text-center">會員管理</a>
+                        <a href="#" class="rounded-3 list-group-item list-group-item-action mb-3 p-4 fs-5 text-center">後台權限管理</a>
                     </div>
                     <a href="#" class="rounded-0 list-group-item list-group-item-action mb-3 fs-5 text-center mt-auto border-end-0 mb-5">登出</a>
                   </div>
@@ -44,145 +44,98 @@
 
 
                 <div class="col-10 p-0">
-                  <!-- 導覽列 -->
-                  <nav class="navbar border-bottom shadow-sm">
-                    <div class="container d-flex  justify-content-end ">
-                        <div class="navbar-brand d-flex py-0">
-                            <img class="me-3" style="height: 80px;" src="./image/logo5.jpg" alt="">
-                            <h2 class=" d-flex  align-items-center ">後台系統</h2>
-                        </div>
-                    </div>
-                  </nav>
-
-                  <!-- 次導覽列 -->
-                  <nav class="nav_second mb-4 mt-3"> 
-                    <div class="nav d-flex align-items-center border-bottom mb-4">
-                        <div class="nav-link text-dark">
-                            <i class="bx bx-video"></i>
-                            <span>會員管理</span>
-                        </div>
-                        <i class="fa fa-angle-right" aria-hidden="true"></i>
-                        <span class="ms-3 fw-bold">會員資料</span>
-                    </div>
-                    
-                  </nav>
-
-                  <div class="container">
-
-                    <ul class="nav nav-tabs border-0 border-bottom mb-4">
-                      <li  class="nav-item ">
-                          <a class="nav-link text-dark " href="./memberBackend.html">會員列表</a>
-                      </li >
-                      <li class="nav nav-tabs border-0">
-                          <a class="nav-link  active fw-bold" href="./noCheckCourseList.html">教練審核</a>
-                      </li>
-                    </ul>
-
-                    <!-- 查詢列 -->
-                    <div class="row row-cols-2 ps-5 pe-5">
-                        <div class="col mb-4">
-                          <div class="d-flex">
-                            <div class="col-auto">
-                              <label for="inputMemberId" class="col-form-label me-2">會員信箱</label>
+                    <!-- 導覽列 -->
+                    <nav class="navbar border-bottom shadow-sm">
+                        <div class="container d-flex  justify-content-end ">
+                            <div class="navbar-brand d-flex py-0">
+                                <img class="me-3" style="height: 80px;" src="<c:url value='/course/image/logo5.jpg' />" alt="">
+                                <h2 class=" d-flex  align-items-center ">後台系統</h2>
                             </div>
-                            <input class="form-control me-2" id="inputMemberId" type="text" placeholder="Search" aria-label="Search">
-                            <div class="col-auto">
-                              <button class="btn btn-outline-primary" type="submit">查詢</button>
-                            </div>
-                          </div>
                         </div>
-                        <div class="col mb-4">
-                          <div class="d-flex">
-                            <div class="col-auto">
-                              <label for="inputMemberName" class="col-form-label me-2">會員名稱</label>
-                            </div>
-                            <input class="form-control me-2" id="inputMemberName" type="text" placeholder="Search" aria-label="Search">
-                            <div class="col-auto">
-                              <button class="btn btn-outline-primary" type="submit">查詢</button>
-                            </div>
-                          </div>
-                        </div>
-                        
-                    </div>
-                    <!-- 表格 -->
-                    <table class="table table-striped align-middle mt-4 text-center" >
-                        <thead>
-                          <tr>
-                            <th scope="col">會員編號 <i class="fa fa-sort-amount-desc" aria-hidden="true"></i>
-                            </th>
-                            <th scope="col">會員名稱 <i class="fa fa-sort-amount-desc" aria-hidden="true"></i></th>
-                            <th scope="col">會員信箱 <i class="fa fa-sort-amount-desc" aria-hidden="true"></i></th>
-                            <th scope="col">教練專長 <i class="fa fa-sort-amount-asc" aria-hidden="true"></i></th>
-                            <th scope="col">教練詳細內容 </th>
-                            
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>ID00231</td>
-                            <td>大中天</td>
-                            <td>A123@gamil.com</td>
-                            <td>瑜伽</td>
-                            <td><div class="btn btn-outline-dark">預覽</div></td>
-                          </tr>
-                          <tr>
-                            <td>ID00231</td>
-                            <td>大中天</td>
-                            <td>A123@gamil.com</td>
-                            <td>瑜伽</td>
-                            <td><div class="btn btn-outline-dark">預覽</div></td>
-                          </tr>
-                          <tr>
-                            <td>ID00231</td>
-                            <td>大中天</td>
-                            <td>A123@gamil.com</td>
-                            <td>瑜伽</td>
-                            <td><div class="btn btn-outline-dark">預覽</div></td>
-                          </tr>
-                          <tr>
-                            <td>ID00231</td>
-                            <td>大中天</td>
-                            <td>A123@gamil.com</td>
-                            <td>瑜伽</td>
-                            <td><div class="btn btn-outline-dark">預覽</div></td>
-                          </tr>
-                          <tr>
-                            <td>ID00231</td>
-                            <td>大中天</td>
-                            <td>A123@gamil.com</td>
-                            <td>瑜伽</td>
-                            <td><div class="btn btn-outline-dark">預覽</div></td>
-                          </tr>
-                          <tr>
-                            <td>ID00231</td>
-                            <td>大中天</td>
-                            <td>A123@gamil.com</td>
-                            <td>瑜伽</td>
-                            <td><div class="btn btn-outline-dark">預覽</div></td>
-                          </tr>
-                          
-                        </tbody>
-                      </table>
-                    <!-- 分頁 -->
-                    <nav aria-label="Page navigation example" class="d-flex justify-content-center mt-4 mb-4">
-                      <ul class="pagination">
-                        <li class="page-item">
-                          <a class="page-link" href="#" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                          </a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item">
-                          <a class="page-link" href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                          </a>
-                        </li>
-                      </ul>
                     </nav>
 
-                  </div>
+                    <!-- 次導覽列 -->
+                    <nav class="nav_second mb-4 mt-3"> 
+                        <div class="nav d-flex align-items-center border-bottom mb-4">
+                            <div class="nav-link text-dark">
+                                <i class="bx bx-video"></i>
+                                <span>課程管理</span>
+                            </div>
+                            <i class="fa fa-angle-right" aria-hidden="true"></i>
+                            <span class="ms-3 fw-bold">課程列表</span>
+                        </div>
+                    </nav>
+
+                    <div class="container-fluid">
+
+
+                        <div class="row align-items-center">
+                            <div class="col-5">
+                                <div class="mb-3 ms-4">
+                                    <video class="w-100" src="../video.mp4" controls></video>
+                                </div>
+                            </div>
+                            <div class="col-7">
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <label class="col-sm-2 col-form-label-lg">申請教練:</label> 
+                                        <span>Brian</span>
+                                    </li>
+                                    <li>
+                                        <label class="col-sm-2 col-form-label-lg">申請狀態:</label> 
+                                        <span>待審核</span>
+                                    </li>
+                                    <li>
+                                        <label class="col-sm-2 col-form-label-lg">申請時間:</label> 
+                                        <span>2021/08/09</span>
+                                    </li>
+                                    <li>
+                                        <label class="col-sm-2 col-form-label-lg">審核時間:</label> 
+                                        <span>待審核</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+    
+                        <ul class="list-unstyled ms-4 mb-5">
+                            <li>
+                                <label class="col-sm-2 col-form-label-lg">課程名稱:</label> 
+                                <span>tabata爆汗核心健身</span>
+                            </li>
+                            <li>
+                                <label class="col-sm-2 col-form-label-lg">器材需求:</label> 
+                                <span>瑜珈墊</span>
+                            </li>
+                            <li>
+                                <label class="col-sm-2 col-form-label-lg">課程適合哪些人:</label> 
+                                <span>想學瑜伽的人</span>
+                                </li>
+                                <li>
+                                <label class="col-sm-2 col-form-label-lg">課程分類:</label> 
+                                <span>上半身</span>
+                                <span>腿部</span>
+                            </li>
+                            <li>
+                                <label class="col-sm-2 col-form-label-lg">價錢:</label> 
+                                <sapn>NT$1000</sapn>
+                            </li>
+                            <li>
+                                <label class="col-form-label-lg">課程介紹:</label> 
+                                <p class="pe-5">課程介紹課程介紹課程介紹課程介紹課程介紹課程介紹課程介紹課程介紹課課程介紹課程介紹課程介紹課程介紹課程介紹課程介紹課程介紹課程介紹課課程介紹課程介紹課程介紹課程介紹課程介紹課程介紹課程介紹課程介紹課課程介紹課程介紹課程介紹課程介紹課程介紹課程介紹課程介紹課程介紹課課程介紹課程介紹課程介紹課程介紹課程介紹課程介紹課程介紹課程介紹課課程介紹課程介紹課程介紹課程介紹課程介紹課程介紹課程介紹課程介紹課課程介紹課程介紹課程介紹課程介紹課程介紹課程介紹課程介紹課程介紹課課程介紹課程介紹課程介紹課程介紹課程介紹課程介紹課程介紹課程介紹課課程介紹課程介紹課程介紹課程介紹課程介紹課程介紹課程介紹課程介紹課課程介紹課程介紹課程介紹課程介紹課程介紹課程介紹課程介紹課程介紹課程介紹課程介紹課程介紹課程介紹課程介紹課程介紹課程介紹課程介紹課程介紹</p>
+                            </li>
+                        </ul>
+
+                        <div class="d-flex justify-content-center mb-5">
+                            <button type="button" class="btn btn-outline-primary me-2 ps-4 pe-4 me-5">通過</button>
+                            <button type="button" class="btn btn-outline-danger ms-2  ps-4 pe-4">拒絕</button>
+                        </div>
+
+                    </div>
+
+
+
+                  
+
                 </div>
             </div>
         </div>

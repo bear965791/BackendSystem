@@ -46,7 +46,7 @@
                   <nav class="navbar border-bottom shadow-sm">
                     <div class="container d-flex  justify-content-end ">
                         <div class="navbar-brand d-flex py-0">
-                            <img class="me-3" style="height: 80px;" src="./image/logo5.jpg" alt="">
+                            <img class="me-3" style="height: 80px;" src="<c:url value='/course/image/logo5.jpg' />" alt="">
                             <h2 class=" d-flex  align-items-center ">後台系統</h2>
                         </div>
                     </div>

@@ -47,7 +47,7 @@
                   <nav class="navbar border-bottom shadow-sm">
                     <div class="container d-flex  justify-content-end ">
                         <div class="navbar-brand d-flex py-0">
-                            <img class="me-3" style="height: 80px;" src="./image/logo5.jpg" alt="">
+                            <img class="me-3" style="height: 80px;" src="<c:url value='/course/image/logo5.jpg' />" alt="">
                             <h2 class=" d-flex  align-items-center ">後台系統</h2>
                         </div>
                     </div>
@@ -76,10 +76,10 @@
                     <div class="mb-5">
                         <ul class="nav nav-tabs border-0 border-bottom">
                             <li  class="nav-item ">
-                                <a class="nav-link text-dark " href="<c:url value='./classList.jsp' />">課程列表</a>
+                                <a class="nav-link text-dark " href="<c:url value='/course/classList.jsp' />">課程列表</a>
                             </li >
                             <li class="nav nav-tabs border-0">
-                                <a class="nav-link active fw-bold " href="<c:url value='/index.jsp' />">尚未審核</a>
+                                <a class="nav-link active fw-bold " href="<c:url value='/course/notcheckList.jsp' />">尚未審核</a>
                             </li>
                         </ul>
                         <!-- 查詢列 -->
@@ -118,7 +118,7 @@
                                   <input class="form-control me-2" id="inputMemberPhone" type="text" placeholder="Search" aria-label="Search">
                                                         
                                   <div class="col-auto">
-                                    <button class="btn btn-outline-primary" type="submit">查詢<i class="bi bi-search ms-2"></i> </button>
+                                    <a href="" class="btn btn-outline-primary" type="submit">查詢<i class="bi bi-search ms-2"></i> </a>
                                   </div>
                                 </div>
                             </div>
@@ -149,7 +149,7 @@
 		                                <td>${entry.time}</td>
 		                                <td>${entry.checked}</td>
 		                                <td>
-		                                  <a href="./checkedCourseDetail.html" class="btn btn-outline-dark">
+		                                  <a href="<c:url value='/course/checking_class_detail.jsp' />" class="btn btn-outline-dark">
 		                                    <span>查看</span>
 		                                  </a>
 		                                </td>
