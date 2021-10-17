@@ -15,7 +15,7 @@ import Course.service.Impl.ClassServiceImpl;
 
 
 @WebServlet("/course/CheckingVideoDetail.do")
-public class CheckingVideoDetailServlet extends HttpServlet {
+public class VideoDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
