@@ -33,9 +33,13 @@ public class VideoDetailServlet extends HttpServlet {
 	
 		request.setAttribute("VideoBean",videoBean);
 		
-		RequestDispatcher rd = request.getRequestDispatcher("/course/checkingCourseDetail.jsp");
-		
-		rd.forward(request, response);
+		if(videoBean.getChecked() == 0) {
+			RequestDispatcher rd = request.getRequestDispatcher("/course/checkingCourseDetail.jsp");	
+			rd.forward(request, response);
+		}else {
+			RequestDispatcher rd = request.getRequestDispatcher("/course/checkedCourseDetail.jsp");
+			rd.forward(request, response);
+		}
 		return;
 	
 	}

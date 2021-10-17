@@ -42,7 +42,7 @@ public class CategoryPageServlet extends HttpServlet {
 		System.out.println(part);
 		List<VideoBean> partOfBodyList = classService.findBypartOfBody(part);
 		request.setAttribute("product_video", partOfBodyList);
-		
+	
 		RequestDispatcher rd = request.getRequestDispatcher("/course/noCheckCourseList.jsp");
 		
 		rd.forward(request, response);

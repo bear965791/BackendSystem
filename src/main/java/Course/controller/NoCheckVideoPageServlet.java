@@ -30,17 +30,12 @@ public class NoCheckVideoPageServlet extends HttpServlet {
 		ClassService classService = new ClassServiceImpl();
 		
 		List<VideoBean> videoList = classService.getNoCheckPageCourse();
-
 		request.setAttribute("product_video", videoList);
-		
 		RequestDispatcher rd = request.getRequestDispatcher("/course/noCheckCourseList.jsp");
 		
 		rd.forward(request, response);
 		return;
 	
 	}
-	
-
-
 
 }

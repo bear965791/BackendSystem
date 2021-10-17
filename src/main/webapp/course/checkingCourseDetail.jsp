@@ -83,7 +83,7 @@
                                     </li>
                                     <li>
                                         <label class="col-sm-2 col-form-label-lg">申請狀態:</label> 
-                                        <span>${VideoBean.checked}</span>
+                                        <span>待審核</span>
                                     </li>
                                     <li>
                                         <label class="col-sm-2 col-form-label-lg">申請時間:</label> 
@@ -91,7 +91,7 @@
                                     </li>
                                     <li>
                                         <label class="col-sm-2 col-form-label-lg">審核時間:</label> 
-                                        <span>${VideoBean.checked}</span>
+                                        <span>待審核</span>
                                     </li>
                                 </ul>
                             </div>

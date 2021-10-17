@@ -149,7 +149,12 @@
 		                                <td>${entry.coach}</td>
 		                                <td>${entry.price}</td>
 		                                <td>${entry.time}</td>
-		                                <td>${entry.pass}</td>
+		                                <td>
+		                                <c:choose>
+										  <c:when test="${entry.pass == 0}">不通過</c:when> 
+										  <c:otherwise>通過</c:otherwise> 
+										</c:choose> 
+		                                </td>
 		                                <td>
 		                                  <a href="<c:url value='/course/CheckingVideoDetail.do?videoId=${entry.videoId}' />" class="btn btn-outline-dark">
 		                                    <span>查看</span>

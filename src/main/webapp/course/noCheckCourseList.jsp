@@ -84,19 +84,21 @@
                             </li>
                         </ul>
                         <!-- 查詢列 -->
-                        <FORM action="<c:url value='/Course/CategoryPage.do' />" method="POST">
+                        
+                      <FORM action="<c:url value='/Course/CategoryPage.do' />" method="POST">                        
                         <div class="row row-cols-3 border-0 py-3 ps-4 pe-4">
                             <div class="col mb-4">
                                 <div class="d-flex">
                                   <div class="col-auto">
                                     <label for="inputMemberId" class="col-form-label me-2">課程分類</label>
                                   </div>
-                                  <select class="form-select ms-3" aria-label="Default select example" name="partOfBody">
-                                    <option selected value="全部">全部</option>
-                                    <option value="全身">全身</option>
+                                  <select class="form-select ms-3 me-2" name="partOfBody">
+                                    <option selected value="0">全部</option>
+                                    <option value="全身" >全身</option>
                                     <option value="背部">背部</option>
                                     <option value="二頭">二頭</option>
-                                  </select>                              
+                                  </select> 
+                                  <input class="btn btn-outline-primary" type="submit" value='查詢'>
                                 </div>
                             </div>
                             <div class="col mb-4">
@@ -112,7 +114,7 @@
                                 </div>
                             </div>
                         </div>
-                      </FORM>
+                     </FORM>                                                  
                         <!-- 表格 -->
                         <table class="table table-striped mb-0 text-center">
                             <thead>
@@ -137,7 +139,7 @@
 		                                <td>${entry.coach}</td>
 		                                <td>${entry.price}</td>
 		                                <td>${entry.time}</td>
-		                                <td>${entry.checked}</td>
+		                                <td>待審核</td>
 		                                <td>
 		                                  <a href="<c:url value='/course/CheckingVideoDetail.do?videoId=${entry.videoId}' />" class="btn btn-outline-dark">
 		                                    <span>查看</span>

@@ -82,7 +82,12 @@
                                     </li>
                                     <li>
                                         <label class="col-sm-2 col-form-label-lg">申請狀態:</label> 
-                                        <span>${VideoBean.pass}</span>
+                                        <span>
+                                        <c:choose>
+										  <c:when test="${VideoBean.pass == 0}">不通過</c:when> 
+										  <c:otherwise>通過</c:otherwise> 
+										</c:choose> 
+                                        </span>
                                     </li>
                                     <li>
                                         <label class="col-sm-2 col-form-label-lg">申請時間:</label> 
