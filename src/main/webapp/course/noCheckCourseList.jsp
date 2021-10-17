@@ -11,9 +11,11 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- <link rel="stylesheet" href="./css/style.css"> -->
 </head>
 <body>
+
+  
+
 
     <section class="member_Backend">
         <div class="container-fluid">
@@ -35,7 +37,7 @@
                       <a href="./OrderBackend.html" class="rounded-3 list-group-item list-group-item-action mb-3 p-4 fs-5 text-center">訂單管理</a>
                       <a href="./courseList.html" class="rounded-3 list-group-item list-group-item-action mb-3 p-4 fs-5 text-center">課程管理</a>
                       <a href="./MemberBackend.html" class="rounded-3 list-group-item list-group-item-action mb-3 p-4 fs-5 text-center">會員管理</a>
-                      <a href="#" class="rounded-3 list-group-item list-group-item-action mb-3 p-4 fs-5 text-center">後台權限管理</a>
+                      <a href="./backendAdminister.html" class="rounded-3 list-group-item list-group-item-action mb-3 p-4 fs-5 text-center">後台權限管理</a>
                     </div>
                     <a href="#" class="rounded-0 list-group-item list-group-item-action mb-3 fs-5 text-center mt-auto border-end-0 mb-5">登出</a>
                   </div>
@@ -71,11 +73,10 @@
                     </div>
                   </nav>
 
-                  <!-- 表格 -->
-                  <div class="container ">
+                  <div class="container-fluid p-0">
                     <div class="mb-5">
                         <ul class="nav nav-tabs border-0 border-bottom">
-                            <li  class="nav-item ">
+                   			<li  class="nav-item ">
                                 <a class="nav-link text-dark " href="<c:url value='/course/classList.jsp' />">課程列表</a>
                             </li >
                             <li class="nav nav-tabs border-0">
@@ -83,17 +84,17 @@
                             </li>
                         </ul>
                         <!-- 查詢列 -->
-                        <div class="row row-cols-3 border-0 px-2 py-3">
-
+                        <FORM action="<c:url value='/Course/CategoryPage.do' />" method="POST">
+                        <div class="row row-cols-3 border-0 py-3 ps-4 pe-4">
                             <div class="col mb-4">
                                 <div class="d-flex">
                                   <div class="col-auto">
                                     <label for="inputMemberId" class="col-form-label me-2">審核狀態</label>
                                   </div>
-                                  <select class="form-select me-3" aria-label="Default select example">
-                                    <option selected>全部</option>
-                                    <option value="1">通過</option>
-                                    <option value="2">未通過</option>
+                                  <select class="form-select me-3" aria-label="Default select example" name="status">
+                                    <option selected value="1">全部</option>
+                                    <option value="2">通過</option>
+                                    <option value="3">未通過</option>
                                   </select>                                 
                                 </div>
                             </div>
@@ -102,11 +103,11 @@
                                   <div class="col-auto">
                                     <label for="inputMemberId" class="col-form-label me-2">課程分類</label>
                                   </div>
-                                  <select class="form-select ms-3" aria-label="Default select example">
-                                    <option selected>全部</option>
-                                    <option value="1">上半身</option>
-                                    <option value="2">下半身</option>
-                                    <option value="3">Three</option>
+                                  <select class="form-select ms-3" aria-label="Default select example" name="partOfBody">
+                                    <option selected value="全部">全部</option>
+                                    <option value="全身">全身</option>
+                                    <option value="背部">背部</option>
+                                    <option value="二頭">二頭</option>
                                   </select>                              
                                 </div>
                             </div>
@@ -118,11 +119,12 @@
                                   <input class="form-control me-2" id="inputMemberPhone" type="text" placeholder="Search" aria-label="Search">
                                                         
                                   <div class="col-auto">
-                                    <a href="" class="btn btn-outline-primary" type="submit">查詢<i class="bi bi-search ms-2"></i> </a>
+                                    <Input class="btn btn-outline-primary" type="submit" value='查詢'>
                                   </div>
                                 </div>
                             </div>
                         </div>
+                      </FORM>
                         <!-- 表格 -->
                         <table class="table table-striped mb-0 text-center">
                             <thead>
@@ -138,7 +140,7 @@
                               </tr>
                             </thead>
                             <tbody>
-	                         <c:forEach var="entry"  items="${product_video}" > 
+                              <c:forEach var="entry"  items="${product_video}" > 
 		                              <!-- 表格項目動態新增 -->
 		                              <tr class="align-middle">
 		                                <th scope="row ">${entry.name}</th>
@@ -147,7 +149,7 @@
 		                                <td>${entry.coach}</td>
 		                                <td>${entry.price}</td>
 		                                <td>${entry.time}</td>
-		                                <td>${entry.checked}</td>
+		                                <td>${entry.pass}</td>
 		                                <td>
 		                                  <a href="<c:url value='/course/CheckingVideoDetail.do?videoId=${entry.videoId}' />" class="btn btn-outline-dark">
 		                                    <span>查看</span>
@@ -155,91 +157,6 @@
 		                                </td>
 		                              </tr>
 		                          	</c:forEach>
-                       <!--   <tr class="align-middle">
-                                <th scope="row ">tabata爆汗核心健身</th>
-                                <td>class01</td>
-                                <td>上半身</td>
-                                <td>Brian</td>
-                                <td>1000</td>
-                                <td>2021/07/09</td>
-                                <td>未審核</td>
-                                <td>
-                                  <a href="./checkingCourseDetail.html" class="btn btn-outline-dark">
-                                    <span>查看</span>
-                                  </a>
-                                </td>
-                              </tr>
-                              <tr class="align-middle">
-                                <th scope="row ">tabata爆汗核心健身</th>
-                                <td>class01</td>
-                                <td>上半身</td>
-                                <td>Brian</td>
-                                <td>1000</td>
-                                <td>2021/07/09</td>
-                                <td>未審核</td>
-                                <td>
-                                  <a href="./checkingCourseDetail.html" class="btn btn-outline-dark">
-                                    <span>查看</span>
-                                  </a>
-                                </td>
-                              </tr>
-                              <tr class="align-middle">
-                                <th scope="row ">tabata爆汗核心健身</th>
-                                <td>class01</td>
-                                <td>上半身</td>
-                                <td>Brian</td>
-                                <td>1000</td>
-                                <td>2021/07/09</td>
-                                <td>未審核</td>
-                                <td>
-                                  <a href="./checkingCourseDetail.html" class="btn btn-outline-dark">
-                                    <span>查看</span>
-                                  </a>
-                                </td>
-                              </tr>
-                              <tr class="align-middle">
-                                <th scope="row ">tabata爆汗核心健身</th>
-                                <td>class01</td>
-                                <td>上半身</td>
-                                <td>Brian</td>
-                                <td>1000</td>
-                                <td>2021/07/09</td>
-                                <td>未審核</td>
-                                <td>
-                                  <a href="./checkingCourseDetail.html" class="btn btn-outline-dark">
-                                    <span>查看</span>
-                                  </a>
-                                </td>
-                              </tr>
-                              <tr class="align-middle">
-                                <th scope="row ">tabata爆汗核心健身</th>
-                                <td>class01</td>
-                                <td>上半身</td>
-                                <td>Brian</td>
-                                <td>1000</td>
-                                <td>2021/07/09</td>
-                                <td>未審核</td>
-                                <td>
-                                  <a href="./checkingCourseDetail.html" class="btn btn-outline-dark">
-                                    <span>查看</span>
-                                  </a>
-                                </td>
-                              </tr>
-                              <tr class="align-middle">
-                                <th scope="row ">tabata爆汗核心健身</th>
-                                <td>class01</td>
-                                <td>上半身</td>
-                                <td>Brian</td>
-                                <td>1000</td>
-                                <td>2021/07/09</td>
-                                <td>未審核</td>
-                                <td>
-                                  <a href="./checkingCourseDetail.html" class="btn btn-outline-dark">
-                                    <span>查看</span>
-                                  </a>
-                                </td>
-                              </tr>	-->
-                              
                             </tbody>
                         </table>
                     </div>

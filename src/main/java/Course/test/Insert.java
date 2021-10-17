@@ -24,7 +24,10 @@ public class Insert {
 		VideoBean vb1 = new VideoBean();
 		VideoBean vb2 = new VideoBean();
 		VideoBean vb3 = new VideoBean();
-		List<VideoBean> vb = Arrays.asList(vb1, vb2, vb3);
+		VideoBean vb4 = new VideoBean();
+		VideoBean vb5 = new VideoBean();
+		VideoBean vb6 = new VideoBean();
+		List<VideoBean> vb = Arrays.asList(vb1, vb2, vb3, vb4, vb5, vb6);
 
 		SessionFactory factory = HibernateUtils.getSessionFactory();
 		Session session = factory.openSession();

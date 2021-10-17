@@ -123,5 +123,44 @@ public class ClassServiceImpl implements ClassService {
 	}
 
 
+	@Override
+	public List<VideoBean> findByPass(int num) {
+		Session session = factory.getCurrentSession();
+		List<VideoBean> list = null;
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			list = videoDao.findByPass(num);
+			tx.commit();
+		}catch(Exception e) {
+			if(tx != null) {
+				tx.rollback();
+				e.printStackTrace();
+				throw new RuntimeException(e);				
+			}
+		}
+		return list;
+	}
+
+
+	@Override
+	public List<VideoBean> findBypartOfBody(String partOfBody) {
+		Session session = factory.getCurrentSession();
+		List<VideoBean> list = null;
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			list = videoDao.findBypartOfBody(partOfBody);
+			tx.commit();
+		}catch(Exception e) {
+			if(tx != null) {
+				tx.rollback();
+				e.printStackTrace();
+				throw new RuntimeException(e);				
+			}
+		}
+		return list;
+	}
+	
 
 }

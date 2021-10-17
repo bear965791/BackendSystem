@@ -84,4 +84,52 @@ public class VideoDaoImpl__Hibernate implements VideoDao {
 	}
 
 
+	@Override
+	public List<VideoBean> findByPass(int num) {
+		Session session = factory.getCurrentSession();
+		List<VideoBean> list = new ArrayList<VideoBean>();
+		
+		switch(num){
+			case 1:
+				String hql = "FROM VideoBean WHERE checked = false";
+				list = session.createQuery(hql, VideoBean.class)
+							.getResultList();
+				break;
+			case 2:
+				String hql2 = "FROM VideoBean WHERE pass = true";
+				list = session.createQuery(hql2, VideoBean.class)
+							.getResultList();
+				break;
+			case 3:
+				String hql3 = "FROM VideoBean WHERE pass = false";	
+				list = session.createQuery(hql3, VideoBean.class)
+						.getResultList();
+				break;
+		
+		}
+	return list;
+	}
+
+
+	@Override
+	public List<VideoBean> findBypartOfBody(String partOfBody) {
+		Session session = factory.getCurrentSession();
+		List<VideoBean> list = new ArrayList<VideoBean>();
+		
+		if(partOfBody != "全部") {
+			String hql = "FROM VideoBean WHERE partOfBody = :partOfBody";
+			
+			list = session.createQuery(hql, VideoBean.class)
+						  .setParameter("partOfBody", partOfBody)
+						  .getResultList();
+		}else {
+			String hql = "FROM VideoBean WHERE checked = false";
+			list = session.createQuery(hql, VideoBean.class)
+						.getResultList();
+		}
+	return list;
+	}
+	
+
+
 }

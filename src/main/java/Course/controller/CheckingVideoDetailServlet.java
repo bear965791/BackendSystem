@@ -1,7 +1,6 @@
 package Course.controller;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -34,14 +33,11 @@ public class CheckingVideoDetailServlet extends HttpServlet {
 	
 		request.setAttribute("VideoBean",videoBean);
 		
-		RequestDispatcher rd = request.getRequestDispatcher("/course/checking_class_detail.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/course/checkingCourseDetail.jsp");
 		
 		rd.forward(request, response);
 		return;
 	
 	}
-	
-
-
 
 }

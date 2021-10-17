@@ -33,7 +33,7 @@ public class VideoPageServlet extends HttpServlet {
 	
 		request.setAttribute("product_video", videoList);
 		
-		RequestDispatcher rd = request.getRequestDispatcher("/course/notcheckList.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/course/noCheckCourseList.jsp");
 		
 		rd.forward(request, response);
 		return;
