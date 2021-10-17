@@ -14,11 +14,9 @@ import Course.model.VideoBean;
 import Course.service.ClassService;
 import Course.service.Impl.ClassServiceImpl;
 
-
-@WebServlet("/backStage/CoursePage")
-public class VideoPageServlet extends HttpServlet {
+@WebServlet("/backStage/CheckedVideoPageServlet.do")
+public class CheckedVideoPageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		doPost(request, response);
@@ -29,18 +27,14 @@ public class VideoPageServlet extends HttpServlet {
 	
 		ClassService classService = new ClassServiceImpl();
 		
-		List<VideoBean> videoList = classService.getPageCourse();
+		List<VideoBean> videoList = classService.getCheckedPageCourse();
 	
 		request.setAttribute("product_video", videoList);
 		
-		RequestDispatcher rd = request.getRequestDispatcher("/course/noCheckCourseList.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/course/courseList.jsp");
 		
 		rd.forward(request, response);
 		return;
 	
 	}
-	
-
-
-
 }

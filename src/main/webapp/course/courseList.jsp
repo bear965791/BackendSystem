@@ -77,10 +77,10 @@
                     <div class="mb-5">
                         <ul class="nav nav-tabs border-0 border-bottom">
                             <li  class="nav-item ">
-                                <a class="nav-link active fw-bold" href="<c:url value='/course/classList.jsp' />">課程列表</a>
+                                <a class="nav-link active fw-bold" href="<c:url value='/backStage/CheckedVideoPageServlet.do'/>">課程列表</a>
                             </li >
                             <li class="nav nav-tabs border-0">
-                                <a class="nav-link text-dark" href="<c:url value='/course/notcheckList.jsp' />">尚未審核</a>
+                                <a class="nav-link text-dark" href="<c:url value='/backStage/noCheckCoursePage'/>">尚未審核</a>
                             </li>
                         </ul>
                         <!-- 查詢列 -->
@@ -140,21 +140,23 @@
                             </thead>
                             <tbody>
                               <!-- 表格項目 -->
-                              <tr class="align-middle">
-                                <th scope="row ">tabata爆汗核心健身</th>
-                                <td>class01</td>
-                                <td>上半身</td>
-                                <td>Brian</td>
-                                <td>1000</td>
-                                <td>2021/07/09</td>
-                                <td>通過</td>
-                                <td>
-                                  <a href="./checkedCourseDetail.html" class="btn btn-outline-dark">
-                                    <span>查看</span>
-                                  </a>
-                                </td>
-                              </tr>
-                 
+                                 <c:forEach var="entry"  items="${product_video}" > 
+		                              <!-- 表格項目動態新增 -->
+		                              <tr class="align-middle">
+		                                <th scope="row ">${entry.name}</th>
+		                                <td>${entry.videoId}</td>
+		                                <td>${entry.partOfBody}</td>
+		                                <td>${entry.coach}</td>
+		                                <td>${entry.price}</td>
+		                                <td>${entry.time}</td>
+		                                <td>${entry.pass}</td>
+		                                <td>
+		                                  <a href="<c:url value='/course/CheckingVideoDetail.do?videoId=${entry.videoId}' />" class="btn btn-outline-dark">
+		                                    <span>查看</span>
+		                                  </a>
+		                                </td>
+		                              </tr>
+		                         </c:forEach>
                             </tbody>
                         </table>
                     </div>

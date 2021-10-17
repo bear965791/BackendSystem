@@ -6,7 +6,8 @@ import Course.model.VideoBean;
 
 public interface VideoDao {
 	public VideoBean findById(int pk);
-	public List<VideoBean> getPageCourse();
+	public List<VideoBean> getNoCheckPageCourse();
+	public List<VideoBean> getCheckedPageCourse();
 	public void save(VideoBean vb);
 	public void update(VideoBean mem);
 	public void delete(int pk) ;

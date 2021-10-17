@@ -77,10 +77,10 @@
                     <div class="mb-5">
                         <ul class="nav nav-tabs border-0 border-bottom">
                    			<li  class="nav-item ">
-                                <a class="nav-link text-dark " href="<c:url value='/course/classList.jsp' />">課程列表</a>
+                                <a class="nav-link text-dark " href="<c:url value='/backStage/CheckedVideoPageServlet.do'/>">課程列表</a>
                             </li >
                             <li class="nav nav-tabs border-0">
-                                <a class="nav-link active fw-bold " href="<c:url value='/course/notcheckList.jsp' />">尚未審核</a>
+                                <a class="nav-link active fw-bold " href="<c:url value='/backStage/noCheckCoursePage' />">尚未審核</a>
                             </li>
                         </ul>
                         <!-- 查詢列 -->
@@ -134,8 +134,8 @@
                                 <th scope="col">課程分類</th>
                                 <th scope="col">教練</th>
                                 <th scope="col">售價</th>
-                                <th scope="col">審核時間</th>
-                                <th scope="col">審核狀態</th>
+                                <th scope="col">申請時間</th>
+                                <th scope="col">申請狀態</th>
                                 <th scope="col"></th>
                               </tr>
                             </thead>
@@ -149,14 +149,14 @@
 		                                <td>${entry.coach}</td>
 		                                <td>${entry.price}</td>
 		                                <td>${entry.time}</td>
-		                                <td>${entry.pass}</td>
+		                                <td>${entry.checked}</td>
 		                                <td>
 		                                  <a href="<c:url value='/course/CheckingVideoDetail.do?videoId=${entry.videoId}' />" class="btn btn-outline-dark">
 		                                    <span>查看</span>
 		                                  </a>
 		                                </td>
 		                              </tr>
-		                          	</c:forEach>
+		                         </c:forEach>
                             </tbody>
                         </table>
                     </div>

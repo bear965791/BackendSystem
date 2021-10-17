@@ -6,7 +6,8 @@ import Course.model.VideoBean;
 
 public interface ClassService {
 	public VideoBean findById(int pk);
-	public List<VideoBean> getPageCourse();
+	public List<VideoBean> getNoCheckPageCourse();
+	public List<VideoBean> getCheckedPageCourse();
 	void delete(int pk) ;
 	public void save(VideoBean vb);
 	public void update(VideoBean mem);

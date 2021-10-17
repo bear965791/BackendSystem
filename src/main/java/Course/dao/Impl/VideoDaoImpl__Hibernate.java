@@ -73,17 +73,31 @@ public class VideoDaoImpl__Hibernate implements VideoDao {
 	
 
 	
+	//未審核畫面找checked=0
 	@Override
-	public List<VideoBean> getPageCourse() {
+	public List<VideoBean> getNoCheckPageCourse() {
 		Session session = factory.getCurrentSession();
 		List<VideoBean> list = new ArrayList<VideoBean>();
-		String hql = "FROM VideoBean";
+		String hql = "FROM VideoBean WHERE checked = 0";
 		list = session.createQuery(hql, VideoBean.class)
 					.getResultList();
 		return list;
 	}
+	
+	//課程列表畫面找checked=1
+	@Override
+	public List<VideoBean> getCheckedPageCourse() {
+		Session session = factory.getCurrentSession();
+		List<VideoBean> list = new ArrayList<VideoBean>();
+		String hql = "FROM VideoBean WHERE checked = 1";
+		list = session.createQuery(hql, VideoBean.class)
+					.getResultList();
+		return list;
+	}
+	
 
-
+	
+	//審核有沒有通過，找pass
 	@Override
 	public List<VideoBean> findByPass(int num) {
 		Session session = factory.getCurrentSession();
@@ -91,17 +105,17 @@ public class VideoDaoImpl__Hibernate implements VideoDao {
 		
 		switch(num){
 			case 1:
-				String hql = "FROM VideoBean WHERE checked = false";
+				String hql = "FROM VideoBean WHERE checked = 1";
 				list = session.createQuery(hql, VideoBean.class)
 							.getResultList();
 				break;
 			case 2:
-				String hql2 = "FROM VideoBean WHERE pass = true";
+				String hql2 = "FROM VideoBean WHERE pass = 1";
 				list = session.createQuery(hql2, VideoBean.class)
 							.getResultList();
 				break;
 			case 3:
-				String hql3 = "FROM VideoBean WHERE pass = false";	
+				String hql3 = "FROM VideoBean WHERE pass = 0";	
 				list = session.createQuery(hql3, VideoBean.class)
 						.getResultList();
 				break;
@@ -111,6 +125,7 @@ public class VideoDaoImpl__Hibernate implements VideoDao {
 	}
 
 
+	
 	@Override
 	public List<VideoBean> findBypartOfBody(String partOfBody) {
 		Session session = factory.getCurrentSession();
@@ -123,13 +138,14 @@ public class VideoDaoImpl__Hibernate implements VideoDao {
 						  .setParameter("partOfBody", partOfBody)
 						  .getResultList();
 		}else {
-			String hql = "FROM VideoBean WHERE checked = false";
+			String hql = "FROM VideoBean WHERE checked = 0";
 			list = session.createQuery(hql, VideoBean.class)
 						.getResultList();
 		}
 	return list;
 	}
-	
+
+
 
 
 }

@@ -44,14 +44,14 @@ public class ClassServiceImpl implements ClassService {
 	}
 
 	@Override
-	public List<VideoBean> getPageCourse() {
+	public List<VideoBean> getNoCheckPageCourse() {
 		
 		Session session = factory.getCurrentSession();
 		List<VideoBean> list = null;
 		Transaction tx = null;
 		try {
 			tx = session.beginTransaction();
-			list = videoDao.getPageCourse();
+			list = videoDao.getNoCheckPageCourse();
 			tx.commit();
 		}catch(Exception e) {
 			if(tx != null) {
@@ -151,6 +151,26 @@ public class ClassServiceImpl implements ClassService {
 		try {
 			tx = session.beginTransaction();
 			list = videoDao.findBypartOfBody(partOfBody);
+			tx.commit();
+		}catch(Exception e) {
+			if(tx != null) {
+				tx.rollback();
+				e.printStackTrace();
+				throw new RuntimeException(e);				
+			}
+		}
+		return list;
+	}
+
+
+	@Override
+	public List<VideoBean> getCheckedPageCourse() {
+		Session session = factory.getCurrentSession();
+		List<VideoBean> list = null;
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			list = videoDao.getCheckedPageCourse();
 			tx.commit();
 		}catch(Exception e) {
 			if(tx != null) {

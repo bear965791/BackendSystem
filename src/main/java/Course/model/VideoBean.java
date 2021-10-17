@@ -27,8 +27,8 @@ public class VideoBean implements Serializable {
 	private String coach; //放影片上傳者
 	private String equipment; //器材
 	private String level; //適合的層級
-	private Boolean pass; //課程是否審核成功
-	private	Boolean checked; //審核狀態（未審核/已審核）
+	private Integer pass; //課程是否審核成功
+	private	Integer checked; //審核狀態（未審核/已審核）
 	
 	public VideoBean(Integer videoId) {
 		this.videoId = videoId;
@@ -137,22 +137,24 @@ public class VideoBean implements Serializable {
 	public void setLevel(String level) {
 		this.level = level;
 	}
-
-	public Boolean getPass() {
+	
+	public Integer getPass() {
 		return pass;
 	}
-
-	public void setPass(Boolean pass) {
+	
+	public void setPass(Integer pass) {
 		this.pass = pass;
 	}
-
-	public Boolean getChecked() {
+	
+	public Integer getChecked() {
 		return checked;
 	}
-
-	public void setChecked(Boolean checked) {
+	
+	public void setChecked(Integer checked) {
 		this.checked = checked;
-	}	
+	}
+
+
 	
 	
 
