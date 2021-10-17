@@ -31,11 +31,11 @@ public class CategoryPageServlet extends HttpServlet {
 		ClassService classService = new ClassServiceImpl();
 //		
 //		//搜審核狀態
-		String status = request.getParameter("status");
-		int num = Integer.parseInt(status.trim());
-		List<VideoBean> passList = classService.findByPass(num);
-		request.setAttribute("product_video", passList);
-//		
+//		String status = request.getParameter("status");
+//		int num = Integer.parseInt(status.trim());
+//		List<VideoBean> passList = classService.findByPass(num);
+//		request.setAttribute("product_video", passList);
+////		
 		//搜課程分類
 		String partOfBody = request.getParameter("partOfBody");
 		String part = new String(partOfBody.getBytes("ISO-8859-1"), "utf-8");

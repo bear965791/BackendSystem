@@ -89,18 +89,6 @@
                             <div class="col mb-4">
                                 <div class="d-flex">
                                   <div class="col-auto">
-                                    <label for="inputMemberId" class="col-form-label me-2">審核狀態</label>
-                                  </div>
-                                  <select class="form-select me-3" aria-label="Default select example" name="status">
-                                    <option selected value="1">全部</option>
-                                    <option value="2">通過</option>
-                                    <option value="3">未通過</option>
-                                  </select>                                 
-                                </div>
-                            </div>
-                            <div class="col mb-4">
-                                <div class="d-flex">
-                                  <div class="col-auto">
                                     <label for="inputMemberId" class="col-form-label me-2">課程分類</label>
                                   </div>
                                   <select class="form-select ms-3" aria-label="Default select example" name="partOfBody">
