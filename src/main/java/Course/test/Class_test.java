@@ -7,8 +7,15 @@ public class Class_test {
 
 	public static void main(String[] args) {
 		
-		ClassService classService = new ClassServiceImpl();
+//		ClassService classService = new ClassServiceImpl();
+
+//		SELECT * FROM VideoBean WHERE NAME LIKE '%4%' OR videoId LIKE "%4%";
+//		'%4%'
+//		"%inputValue%"
+		String inputValue = "2";
+		inputValue = "'"+"%"+inputValue+"%"+"'";
 		
+		System.out.println(inputValue);
 //		List<VideoBean> list = classService.search("4");
 //		System.out.println(list);
 //		for(VideoBean bean : list) {

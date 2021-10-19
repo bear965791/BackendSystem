@@ -116,7 +116,7 @@ public class VideoDaoImpl__Hibernate implements VideoDao {
 	   count = list.get(0);
 	  }
 	  
-	  totalPages = (int) (Math.ceil(count) / (double) pageSize);
+	  totalPages = (int) (Math.ceil(count / (double) pageSize));
 	  
 	  pageInfo = Arrays.asList(count,totalPages);
 	  
@@ -145,14 +145,11 @@ public class VideoDaoImpl__Hibernate implements VideoDao {
 		session.merge(vb);
 	}
 
-
 	@Override
 	public String getByInputValueHql(String inputValue) {
-		String hql;
-		String text = "%" + inputValue +"%";
+		String hql; 
+		String text = "'"+"%"+inputValue+"%"+"'";
 		hql = "FROM VideoBean WHERE name LIKE "+text + "OR videoId LIKE" + text;
-//		hql = "FROM VideoBean WHERE name LIKE :inputValue OR videoId LIKE :inputValue";
-		
 		return hql;
 	}
 

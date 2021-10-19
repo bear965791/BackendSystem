@@ -22,6 +22,10 @@ public class NotCheckPageServlet extends HttpServlet {
 		int pagesize = 5;// 每頁顯示的商品數
 		String hql = "From VideoBean v WHERE v.checked = 0";
 		String curpage = request.getParameter("pageNo");
+		
+		String servletPath = request.getServletPath();
+		request.setAttribute("servletPath", servletPath);
+		
 		// 為當前頁賦值
 		if (!"".equals(curpage) && curpage != null) {
 			currentpage = Integer.parseInt(curpage);

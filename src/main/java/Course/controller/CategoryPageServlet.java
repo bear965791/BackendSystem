@@ -23,30 +23,38 @@ public class CategoryPageServlet extends HttpServlet {
        
    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doPost(request, response);
+		ClassService classService = new ClassServiceImpl();
+		VideoDao videoDao = new VideoDaoImpl__Hibernate();
+		int currentpage = 1;// 默認的當前頁
+		int pagesize = 5;// 每頁顯示的商品數
+
+		String servletPath = request.getServletPath();
+		request.setAttribute("servletPath", servletPath);
+
+
+		String curpage = request.getParameter("pageNo");
+		// 為當前頁賦值
+		if (!"".equals(curpage) && curpage != null) {
+			currentpage = Integer.parseInt(curpage);
+		}
+		String partOfBody = request.getParameter("partOfBody");
+		String hql =  videoDao.getBypartOfBodyHql(partOfBody);
+		PageBean pageBean = classService.findCourseByPage(currentpage, pagesize, hql);
+
+		request.setAttribute("pageBean", pageBean);
+
+		RequestDispatcher rd = request.getRequestDispatcher("/course/noCheckCourseList.jsp");
+		
+		rd.forward(request, response);
+		return;
+		
+		
 	}
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//傳入挑選的選項去搜尋
-		ClassService classService = new ClassServiceImpl();
-		VideoDao videoDao = new VideoDaoImpl__Hibernate();
-		int currentpage = 1;// 默認的當前頁
-		int pagesize = 5;// 每頁顯示的商品數
-		
-		//搜課程分類
-		String partOfBody = request.getParameter("body");
-		String part = new String(partOfBody.getBytes("ISO-8859-1"), "utf-8");
-		
-		String hql =  videoDao.getBypartOfBodyHql(part);
-		PageBean pageBean = classService.findCourseByPage(currentpage, pagesize, hql);
-		
-		request.setAttribute("pageBean", pageBean);
-			
-		RequestDispatcher rd = request.getRequestDispatcher("/course/noCheckCourseList.jsp");
-		
-		rd.forward(request, response);
-		return;
+		doGet(request,response);
 
 	}
 

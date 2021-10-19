@@ -92,7 +92,7 @@
                                     </li>
                                     <li>
                                         <label class="col-sm-2 col-form-label-lg">審核時間:</label> 
-                                        <span>${VideoBean.pass}</span>
+                                        <span>${VideoBean.checktime}</span>
                                     </li>
                                 </ul>
                             </div>

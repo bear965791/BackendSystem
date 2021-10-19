@@ -18,7 +18,7 @@
 
     <section class="member_Backend">
         <div class="container-fluid">
-            <div class="row">
+            <div class="row vh-100">
                 <!-- 側邊欄 -->
                 <div class="col-2 p-0">
                   <div class="sidebar bg-dark h-100 d-flex flex-column">
@@ -46,7 +46,7 @@
                 <div class="col-10 p-0">
                     <!-- 導覽列 -->
                     <nav class="navbar border-bottom shadow-sm">
-                        <div class="container d-flex  justify-content-end ">
+                        <div class="container-fluid d-flex  justify-content-end ">
                             <div class="navbar-brand d-flex py-0">
                                 <img class="me-3" style="height: 80px;" src="<c:url value='/course/image/logo5.jpg' />" alt="">
                                 <h2 class=" d-flex  align-items-center ">後台系統</h2>
