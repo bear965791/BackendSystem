@@ -1,12 +1,10 @@
 package Course.dao.Impl;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.query.Query;
 
 import Course.dao.VideoDao;
 import Course.model.VideoBean;
@@ -61,49 +59,18 @@ public class VideoDaoImpl__Hibernate implements VideoDao {
 	}
 
 
-	
-//	@Override
-//	public List<Object> findBypartOfBody(String partOfBody) {
-//		Session session = factory.getCurrentSession();
-//		List<VideoBean> list = new ArrayList<VideoBean>();
-//		List<Object> list2  =  new ArrayList<>();
-//		
-//		switch(partOfBody){
-//			case "0" :
-//				String hql1 = "FROM VideoBean WHERE checked = 0";
-//				list = session.createQuery(hql1, VideoBean.class)
-//							.getResultList();
-//				list2.add(hql1);
-//				list2.add(list);
-//				break;
-//			default:
-//				String parameter = partOfBody;
-//				String hql2 = "FROM VideoBean WHERE checked = 0 and partOfBody = "+parameter;
-//				
-//				list = session.createQuery(hql2, VideoBean.class).getResultList();
-//				list2.add(hql2);
-//				list2.add(list);
-//		}
-//		return list2;
-//	}
 	@Override
-	public List<VideoBean> findBypartOfBody(String partOfBody) {
-		Session session = factory.getCurrentSession();
-		List<VideoBean> list = new ArrayList<VideoBean>();
-		
+	public String getBypartOfBodyHql(String partOfBody) {
+		String hql;
+		String part = "'" + partOfBody + "'";
 		switch(partOfBody){
 			case "0" :
-				String hql1 = "FROM VideoBean WHERE checked = 0";
-				list = session.createQuery(hql1, VideoBean.class)
-							.getResultList();
+				hql = "FROM VideoBean WHERE checked = 0";
 				break;
 			default:
-				String hql2 = "FROM VideoBean WHERE checked = 0 and partOfBody = :partOfBody";
-				list = session.createQuery(hql2, VideoBean.class)
-							  .setParameter("partOfBody", partOfBody)
-							  .getResultList();
+				hql = "FROM VideoBean WHERE checked = 0 and partOfBody = " + part;
 		}
-		return list;
+		return hql;
 	}
 
 
@@ -111,7 +78,6 @@ public class VideoDaoImpl__Hibernate implements VideoDao {
 	@Override
 	 public String getSelectHql(String partOfBody, String num) {
 	  String selectHql;
-	  System.out.println(partOfBody+num);
 	  String part = "'" + partOfBody + "'";
 	 
 	  if(num.equals("2")) {
@@ -131,44 +97,9 @@ public class VideoDaoImpl__Hibernate implements VideoDao {
 	  }
 	  return selectHql;
 	 }
-//	
-//	
+
 	
 
-	@Override
-	public  List<VideoBean> findByPassAndPartOfBody(String partOfBody, int num) {
-		Session session = factory.getCurrentSession();
-		List<VideoBean> list = new ArrayList<VideoBean>();
-		if(num == 2) {
-			
-			if(partOfBody.equals("0")) {
-				String hql = "FROM VideoBean WHERE checked = 1";
-				list = session.createQuery(hql, VideoBean.class)
-							.getResultList();
-			}else {
-				  String hql = "FROM VideoBean WHERE checked = 1 AND partOfBody = :partOfBody" ;
-				     list = session.createQuery(hql, VideoBean.class)
-				    		 .setParameter("partOfBody", partOfBody)
-				    		 .getResultList();
-			}
-			
-		}else if(partOfBody.equals("0")){
-			String hql = "FROM VideoBean WHERE checked = 1 AND  pass = :num" ;
-			list = session.createQuery(hql, VideoBean.class)
-					.setParameter("num", num)
-					.getResultList();
-			
-		}else {
-			String hql = "FROM VideoBean WHERE checked = 1 AND partOfBody = :partOfBody AND pass = :num" ;
-			list = session.createQuery(hql, VideoBean.class)
-						  .setParameter("num", num)
-						  .setParameter("partOfBody", partOfBody)
-						  .getResultList();
-			
-		}
-		return list;
-	}
-	
 	
 	@Override
 	 public List<? super Integer> getCountsAndPage(int pageSize, String hql) {
@@ -200,12 +131,6 @@ public class VideoDaoImpl__Hibernate implements VideoDao {
 		return list;
 	}
 
-	@Override
-	public List<VideoBean> findVideoByPage(List<VideoBean> list,int currentPage, int pageSize) {
-		@SuppressWarnings("unchecked")
-		List<VideoBean> list2 = ((Query<VideoBean>) list).setFirstResult( (currentPage - 1) * pageSize).setMaxResults(pageSize).getResultList();
-		return list2;
-	}
 
 
 	@Override
@@ -221,19 +146,14 @@ public class VideoDaoImpl__Hibernate implements VideoDao {
 	}
 
 
-	
-
-
 	@Override
-	public List<VideoBean> findByInputValue(String inputValue) {
-		Session session = factory.getCurrentSession();
-		List<VideoBean> list = new ArrayList<VideoBean>();
-		String hql = "FROM VideoBean WHERE name LIKE :inputValue OR videoId LIKE :inputValue";
-		list = session.createQuery(hql, VideoBean.class)
-					  .setParameter("inputValue", "%"+inputValue+"%")
-					  .setParameter("inputValue", "%"+Integer.parseInt(inputValue)+"%")
-					  .getResultList();
-		return list;
+	public String getByInputValueHql(String inputValue) {
+		String hql;
+		String text = "%" + inputValue +"%";
+		hql = "FROM VideoBean WHERE name LIKE "+text + "OR videoId LIKE" + text;
+//		hql = "FROM VideoBean WHERE name LIKE :inputValue OR videoId LIKE :inputValue";
+		
+		return hql;
 	}
 
 

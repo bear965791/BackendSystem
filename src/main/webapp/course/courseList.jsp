@@ -190,8 +190,6 @@
         </li>
                             </c:forEach>
         
-        <%--  <li class="page-item"><a class="page-link" href="<c:url value='/backStage/checkedCoursePage?pageNo=2' />">2</a></li> --%>
-        <%-- <li class="page-item"><a class="page-link" href="<c:url value='/backStage/checkedCoursePage?pageNo=3' />">3</a></li> --%>
 
         <li class="page-item">
          <c:if test="${pageBean.currentPage != pageBean.totalPage && pageBean.totalPage != 0}">

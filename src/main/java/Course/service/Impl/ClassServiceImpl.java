@@ -104,66 +104,7 @@ public class ClassServiceImpl implements ClassService {
 		return;
 		
 	}
-//
-//	@Override
-//	public List<Object> findBypartOfBody(String partOfBody) {
-//		Session session = factory.getCurrentSession();
-//		List<Object> list = null;
-//		Transaction tx = null;
-//		try {
-//			tx = session.beginTransaction();
-//			list = videoDao.findBypartOfBody(partOfBody);
-//			tx.commit();
-//		}catch(Exception e) {
-//			if(tx != null) {
-//				tx.rollback();
-//				e.printStackTrace();
-//				throw new RuntimeException(e);				
-//			}
-//		}
-//		return list;
-//	}
-	
-	@Override
-	public List<VideoBean> findBypartOfBody(String partOfBody) {
-		Session session = factory.getCurrentSession();
-		List<VideoBean> list = null;
-		Transaction tx = null;
-		try {
-			tx = session.beginTransaction();
-			list = videoDao.findBypartOfBody(partOfBody);
-			tx.commit();
-		}catch(Exception e) {
-			if(tx != null) {
-				tx.rollback();
-				e.printStackTrace();
-				throw new RuntimeException(e);				
-			}
-		}
-		return list;
-	}
 
-
-
-//	
-//	@Override
-//	public List<VideoBean> findByPassAndPartOfBody(String partOfBody, int num) {
-//		Session session = factory.getCurrentSession();
-//		List<VideoBean> list = null;
-//		Transaction tx = null;
-//		try {
-//			tx = session.beginTransaction();
-//			list = videoDao.findByPassAndPartOfBody(partOfBody,num);
-//			tx.commit();
-//		}catch(Exception e) {
-//			if(tx != null) {
-//				tx.rollback();
-//				e.printStackTrace();
-//				throw new RuntimeException(e);				
-//			}
-//		}
-//		return list;
-//	}
 	
 	@Override
 	 public PageBean findCourseByPage(int currentPage, int pageSize, String hql) {
@@ -222,57 +163,5 @@ public class ClassServiceImpl implements ClassService {
 
 	}
 
-
-	@Override
-	public List<VideoBean> search(String inputValue) {
-		Session session = factory.getCurrentSession();
-		List<VideoBean> list = null;
-		Transaction tx = null;
-		try {
-			tx = session.beginTransaction();
-			list = videoDao.findByInputValue(inputValue);
-			tx.commit();
-		}catch(Exception e) {
-			if(tx != null) {
-				tx.rollback();
-				e.printStackTrace();
-				throw new RuntimeException(e);				
-			}
-		}
-		return list;
-	}
 	
-//	@Override
-//	 public PageBean findCourseByPage(List<VideoBean> list, int currentPage, int pageSize) {
-//	  long count; 
-//	  int totalpage;
-//	  Session session = factory.getCurrentSession();
-//	  PageBean pageBean = new PageBean();
-//	  Transaction tx = null;
-//	  try {
-//	   tx = session.beginTransaction();
-//	   // 返回資料庫中的商品總數
-//	   count = (long) videoDao.getCountsAndPage(pageSize, hql).get(0);
-//	   // 計算總頁數
-//	   totalpage = (int) videoDao.getCountsAndPage(pageSize, hql).get(1);
-//	   
-//	   // 查詢到的當前頁面要顯示的商品
-//	   List<VideoBean> course = videoDao.findVideoByPage(currentPage, pageSize, hql);
-//
-//	   pageBean.setCourseCount(count);
-//	   pageBean.setVideoBean(course);
-//	   pageBean.setCurrentPage(currentPage);
-//	   pageBean.setTotalPage(totalpage);
-//
-//	   tx.commit();
-//
-//	  } catch (Exception e) {
-//	   if (tx != null) {
-//	    tx.rollback();
-//	    e.printStackTrace();
-//	    throw new RuntimeException(e);
-//	   }
-//	  }
-//	  return pageBean;
-//	 }
 }

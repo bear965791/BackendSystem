@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import Course.dao.VideoDao;
+import Course.dao.Impl.VideoDaoImpl__Hibernate;
 import Course.model.PageBean;
 import Course.model.VideoBean;
 import Course.service.ClassService;
@@ -27,13 +29,20 @@ public class SearchPageServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ClassService classService = new ClassServiceImpl();
+		VideoDao videoDao = new VideoDaoImpl__Hibernate();
+		
+		int currentpage = 1;// 默認的當前頁
+		int pagesize = 5;// 每頁顯示的商品數
+		
 		//輸入字串
 		String inputValue = request.getParameter("inputValue");
 		String textValue = new String(inputValue.getBytes("ISO-8859-1"), "utf-8");
-		List<VideoBean> text = classService.search(textValue);
-		PageBean textBean =  new PageBean();
-		textBean.setVideoBean(text);
-		request.setAttribute("pageBean", textBean);
+		
+		String hql =  videoDao.getByInputValueHql(textValue);
+		PageBean pageBean = classService.findCourseByPage(currentpage, pagesize, hql);
+		
+		
+		request.setAttribute("pageBean", pageBean);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/course/noCheckCourseList.jsp");
 		

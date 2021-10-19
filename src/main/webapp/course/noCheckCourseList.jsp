@@ -162,32 +162,38 @@
                         </table>
                     </div>
             
-                      <nav class="d-flex justify-content-center mt-3 mb-3">
-					       <ul class="pagination">
-					        <li class="page-item">
-					        <c:if test="${pageBean.currentPage > 1}">
-					          <a class="page-link"
-					           href="<c:url value='/backStage/notCheckCoursePage?pageNo=${pageBean.currentPage-1}' />"
-					           aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-					          </a>
-					         </c:if>
-					        </li>
-       						<c:forEach var="page"  begin="1" end="${pageBean.totalPage}" step="1" >
+                   <nav class="d-flex justify-content-center mt-3 mb-3">
+                          <ul class="pagination">
+                           <li class="page-item">
+        <c:if test="${pageBean.currentPage > 1}">
+          <a class="page-link"
+           href="<c:url value='/backStage/checkedCoursePage?pageNo=${pageBean.currentPage-1}' />"
+           aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+          </a>
+         </c:if>
+        </li>
+        
+        
+       <c:forEach var="page"  begin="1" end="${pageBean.totalPage}" step="1" >
                                
-        					<li class="page-item">
-        					<a class="page-link" href="<c:url value='/backStage/notCheckCoursePage?pageNo=${page}'/>">${page}</a>
-        					</li>
+        <li class="page-item">
+        <a class="page-link" href="<c:url value='/backStage/checkedCoursePage?pageNo=${page}'/>">${page}</a>
+        </li>
                             </c:forEach>
-     					        <li class="page-item">
-					         <c:if test="${pageBean.currentPage != pageBean.totalPage}">
-					          <a class="page-link"
-					           href="<c:url value='/backStage/notCheckCoursePage?pageNo=${pageBean.currentPage+1}' />"
-					           aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-					          </a>
-					         </c:if>
-					        </li>
-					       </ul>
-      					</nav>
+        
+        <%--  <li class="page-item"><a class="page-link" href="<c:url value='/backStage/checkedCoursePage?pageNo=2' />">2</a></li> --%>
+        <%-- <li class="page-item"><a class="page-link" href="<c:url value='/backStage/checkedCoursePage?pageNo=3' />">3</a></li> --%>
+
+        <li class="page-item">
+         <c:if test="${pageBean.currentPage != pageBean.totalPage && pageBean.totalPage != 0}">
+          <a class="page-link"
+           href="<c:url value='/backStage/checkedCoursePage?pageNo=${pageBean.currentPage+1}' />"
+           aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+          </a>
+         </c:if>
+        </li>
+                          </ul>
+                    </nav>
                   </div>
                     
                 </div>
