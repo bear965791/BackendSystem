@@ -1,7 +1,6 @@
 package Course.controller;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,8 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import Course.dao.VideoDao;
+import Course.dao.Impl.VideoDaoImpl__Hibernate;
 import Course.model.PageBean;
-import Course.model.VideoBean;
 import Course.service.ClassService;
 import Course.service.Impl.ClassServiceImpl;
 
@@ -28,17 +28,21 @@ public class DoubleCategoryPageServlet extends HttpServlet {
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int currentpage = 1;// 默認的當前頁
+		int pagesize = 5;// 每頁顯示的商品數
 		//傳入挑選的選項去搜尋
 		ClassService classService = new ClassServiceImpl();	
+		VideoDao videoDao = new VideoDaoImpl__Hibernate();
+		
 
 		String status = request.getParameter("status");
-		int num = Integer.parseInt(status);
 		String partOfBody = request.getParameter("partOfBody");
 		String part = new String(partOfBody.getBytes("ISO-8859-1"), "utf-8");
-		List<VideoBean> partOfBodyList = classService.findByPassAndPartOfBody(part,num);
-		PageBean pageBean =  new PageBean();
-		pageBean.setVideoBean(partOfBodyList);
+		String hql =  videoDao.getSelectHql(part, status);
+		PageBean pageBean = classService.findCourseByPage(currentpage, pagesize, hql);
+		
 //		
+//		List<VideoBean> partOfBodyList = classService.findByPassAndPartOfBody(part,num);
 //		List<Object> passList = classService.findByPassAndPartOfBody(part,status);
 //		PageBean pageBean =  new PageBean();
 //		pageBean.setVideoBean(passList);

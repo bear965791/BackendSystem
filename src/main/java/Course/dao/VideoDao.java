@@ -20,9 +20,9 @@ public interface VideoDao {
 	public List<VideoBean> findByInputValue(String inputValue);
 	public List<VideoBean> findBypartOfBody(String partOfBody);
 	public List<VideoBean> findByPassAndPartOfBody(String partOfBody, int num);
+	public String getSelectHql(String partOfBody, String num);
 	
 	
 //	public List<Object> findBypartOfBody(String partOfBody);
-//	public List<Object> findByPassAndPartOfBody(String partOfBody, String num);
 	
 }

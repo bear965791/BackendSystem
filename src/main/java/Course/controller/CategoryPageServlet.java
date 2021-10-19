@@ -38,6 +38,8 @@ public class CategoryPageServlet extends HttpServlet {
 		
 		String part = new String(partOfBody.getBytes("ISO-8859-1"), "utf-8");
 		List<VideoBean> partOfBodyList = classService.findBypartOfBody(part);
+		
+		
 		PageBean pageBean =  new PageBean();
 		pageBean.setVideoBean(partOfBodyList);
 		

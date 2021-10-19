@@ -172,8 +172,6 @@
 					          </a>
 					         </c:if>
 					        </li>
-        
-        
        						<c:forEach var="page"  begin="1" end="${pageBean.totalPage}" step="1" >
                                
         					<li class="page-item">

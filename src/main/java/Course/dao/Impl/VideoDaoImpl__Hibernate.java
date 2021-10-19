@@ -108,51 +108,29 @@ public class VideoDaoImpl__Hibernate implements VideoDao {
 
 
 
-//	@Override
-//	public  List<Object> findByPassAndPartOfBody(String partOfBody, String num) {
-//		Session session = factory.getCurrentSession();
-//		List<VideoBean> list = new ArrayList<VideoBean>();
-//		List<Object> list2  =  new ArrayList<>();
-//
-//		System.out.println(partOfBody+num);
-//	
-//		if(num.equals("2")) {
-//			
-//			if(partOfBody.equals("0")) {
-//				String hql = "FROM VideoBean WHERE checked = 1";
-//				list = session.createQuery(hql, VideoBean.class)
-//							.getResultList();
-//				list2.add(hql);
-//				list2.add(list);
-//				
-//			}else {
-//				  String parameter = partOfBody;
-//				  String hql = "FROM VideoBean WHERE checked = 1 AND partOfBody = " + parameter;
-//				     list = session.createQuery(hql, VideoBean.class).getResultList();
-//				
-//				list2.add(hql);
-//				list2.add(list);
-//			}
-//			
-//		}else if(partOfBody.equals("0")){
-//			 String parameter = num;
-//			String hql = "FROM VideoBean WHERE checked = 1 AND  pass = " +parameter;
-//			list = session.createQuery(hql, VideoBean.class).getResultList();
-//			list2.add(hql);
-//			list2.add(list);
-//			
-//		}else {
-//			String parameter = num;
-//			String hql = "FROM VideoBean WHERE checked = 1 AND partOfBody = :partOfBody AND pass =" +parameter;
-//			list = session.createQuery(hql, VideoBean.class)
-//						  .setParameter("num", num)
-//						.getResultList();
-//			list2.add(hql);
-//			list2.add(list);
-//			
-//		}
-//		return list2;
-//	}
+	@Override
+	 public String getSelectHql(String partOfBody, String num) {
+	  String selectHql;
+	  System.out.println(partOfBody+num);
+	  String part = "'" + partOfBody + "'";
+	 
+	  if(num.equals("2")) {
+	   
+	   if(partOfBody.equals("0")) {
+	    selectHql = "FROM VideoBean WHERE checked = 1";
+	    
+	   }else {
+	    selectHql = "FROM VideoBean WHERE checked = 1 AND partOfBody = " + part;
+	   }
+	   
+	  }else if(partOfBody.equals("0")){
+	   selectHql = "FROM VideoBean WHERE checked = 1 AND  pass = " + num;
+	  }else {
+	   selectHql = "FROM VideoBean WHERE checked = 1 AND partOfBody = " + part + " AND pass = " + num;
+	   
+	  }
+	  return selectHql;
+	 }
 //	
 //	
 	
@@ -168,7 +146,6 @@ public class VideoDaoImpl__Hibernate implements VideoDao {
 				list = session.createQuery(hql, VideoBean.class)
 							.getResultList();
 			}else {
-				  String parameter = partOfBody;
 				  String hql = "FROM VideoBean WHERE checked = 1 AND partOfBody = :partOfBody" ;
 				     list = session.createQuery(hql, VideoBean.class)
 				    		 .setParameter("partOfBody", partOfBody)
