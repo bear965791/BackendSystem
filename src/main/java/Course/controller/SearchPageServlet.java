@@ -1,7 +1,6 @@
 package Course.controller;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import Course.dao.VideoDao;
 import Course.dao.Impl.VideoDaoImpl__Hibernate;
 import Course.model.PageBean;
-import Course.model.VideoBean;
 import Course.service.ClassService;
 import Course.service.Impl.ClassServiceImpl;
 

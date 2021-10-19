@@ -126,7 +126,7 @@ public class VideoDaoImpl__Hibernate implements VideoDao {
 	@Override
 	public List<VideoBean> findVideoByPage(int currentPage, int pageSize, String hql) {
 		Session session = factory.getCurrentSession();
-		List<VideoBean> list = session.createQuery(hql, VideoBean.class).setFirstResult( (currentPage - 1) * pageSize)
+		List<VideoBean> list = session.createQuery(hql, VideoBean.class).setFirstResult((currentPage - 1) * pageSize)
 				.setMaxResults(pageSize).getResultList();	
 		return list;
 	}
