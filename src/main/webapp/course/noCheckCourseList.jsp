@@ -86,17 +86,17 @@
                         <!-- 查詢列 -->
                         
                         <div class="row row-cols-3 border-0 py-3 ps-4 pe-4">
-                      <FORM action="<c:url value='/Course/CategoryPage.do' />" method="POST">                        
+                      <FORM action="<c:url value='/Course/CategoryPage.do' />" method="GET">                        
                 
                             <div class="col mb-4">
                                 <div class="d-flex">
                                   <div class="col-auto">
                                     <label for="inputMemberId" class="col-form-label me-2">課程分類</label>
                                   </div>
-                                  <select class="form-select ms-3 me-2" name="body">
-                                    <option selected value="0">全部</option>
+                                  <select class="form-select ms-3 me-2" name="partOfBody">
+                                    <option value="0">全部</option>
                                     <option value="全身" >全身</option>
-                                    <option value="背部">背部</option>
+                                    <option value="背">背</option>
                                     <option value="二頭">二頭</option>
                                   </select> 
                          			<input class="btn btn-outline-primary" type="submit" value='查詢'>
@@ -136,7 +136,7 @@
                               <c:forEach var="entry"  items="${pageBean.videoBean}" > 
 		                              <!-- 表格項目動態新增 -->
 		                              <tr class="align-middle">
-		                                <th scope="row ">${entry.name}</th>
+		                                <th scope="row">${entry.name}</th>
 		                                <td>${entry.videoId}</td>
 		                                <td>${entry.partOfBody}</td>
 		                                <td>${entry.coach}</td>
@@ -162,38 +162,62 @@
                         </table>
                     </div>
             
-                   <nav class="d-flex justify-content-center mt-3 mb-3">
+                  		<nav class="d-flex justify-content-center mt-3 mb-3">
                           <ul class="pagination">
                            <li class="page-item">
-        <c:if test="${pageBean.currentPage > 1}">
-          <a class="page-link"
-           href="<c:url value='/backStage/checkedCoursePage?pageNo=${pageBean.currentPage-1}' />"
-           aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-          </a>
-         </c:if>
-        </li>
-        
-        
-       <c:forEach var="page"  begin="1" end="${pageBean.totalPage}" step="1" >
-                               
-        <li class="page-item">
-        <a class="page-link" href="<c:url value='/backStage/checkedCoursePage?pageNo=${page}'/>">${page}</a>
-        </li>
-                            </c:forEach>
-        
-        <%--  <li class="page-item"><a class="page-link" href="<c:url value='/backStage/checkedCoursePage?pageNo=2' />">2</a></li> --%>
-        <%-- <li class="page-item"><a class="page-link" href="<c:url value='/backStage/checkedCoursePage?pageNo=3' />">3</a></li> --%>
-
-        <li class="page-item">
-         <c:if test="${pageBean.currentPage != pageBean.totalPage && pageBean.totalPage != 0}">
-          <a class="page-link"
-           href="<c:url value='/backStage/checkedCoursePage?pageNo=${pageBean.currentPage+1}' />"
-           aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-          </a>
-         </c:if>
-        </li>
+						        <c:if test="${pageBean.currentPage > 1}">
+						        <c:choose>
+						        	<c:when  test="${!empty param.partOfBody}">
+							          <a class="page-link" href="<c:url value='${servletPath}?partOfBody=${param.partOfBody}&pageNo=${pageBean.currentPage-1}' />" aria-label="Previous"> 
+							          	<span aria-hidden="true">&laquo;</span>
+							          </a>
+						          </c:when>
+						        	<c:otherwise>
+							          <a class="page-link" href="<c:url value='${servletPath}?pageNo=${pageBean.currentPage-1}' />" aria-label="Previous"> 
+							          	<span aria-hidden="true">&laquo;</span>
+							          </a>
+						          	</c:otherwise>
+						        </c:choose> 
+						        
+						         </c:if>
+						         </li>
+						       	<c:if test="${pageBean.totalPage > 1}">
+						       		<c:forEach var="page"  begin="1" end="${pageBean.totalPage}" step="1" >                  
+						        		<c:choose>
+						        			<c:when  test="${!empty param.partOfBody}">
+						        				<li class="page-item">
+						        				<a class="page-link" href="<c:url value='${servletPath}?partOfBody=${param.partOfBody}&pageNo=${page}'/>">${page}</a>
+						        				</li>
+						        			</c:when>
+						        			<c:otherwise>
+						        				<li class="page-item">
+						        				<a class="page-link" href="<c:url value='${servletPath}?pageNo=${page}'/>">${page}</a>
+						        				</li>
+						        			</c:otherwise>
+						        		</c:choose> 
+						        	</c:forEach>
+						     	</c:if>
+						
+						        <li class="page-item">
+						         	<c:if test="${pageBean.currentPage != pageBean.totalPage && pageBean.totalPage != 0}">
+						         	<c:choose>
+						        		<c:when  test="${!empty param.partOfBody}">
+						         			<a class="page-link" href="<c:url value='${servletPath}?partOfBody=${param.partOfBody}&pageNo=${pageBean.currentPage+1}' />" aria-label="Next">
+						         			<span aria-hidden="true">&raquo;</span>
+						          			</a>
+						          		</c:when>
+						        		<c:otherwise>
+						          			<a class="page-link" href="<c:url value='${servletPath}?pageNo=${pageBean.currentPage+1}' />" aria-label="Next">
+						         			<span aria-hidden="true">&raquo;</span>
+						          			</a>
+						          		</c:otherwise>
+						        	</c:choose> 
+						         	</c:if>
+						        </li>
                           </ul>
                     </nav>
+						   
+                    
                   </div>
                     
                 </div>

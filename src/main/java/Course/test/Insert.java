@@ -2,6 +2,7 @@ package Course.test;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.sql.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -43,7 +44,12 @@ public class Insert {
 					vb.setVideoInfo(new SerialClob((col[2]).toCharArray()));
 					vb.setCategory(col[3]);
 					vb.setPartOfBody(col[4]);
-					vb.setTime(format.parse(col[7]));
+					try {
+						
+						vb.setTime(new Date(format.parse(col[7]).getTime()));
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
 					vb.setPrice(Integer.parseInt(col[8]));
 					vb.setCoach(col[9]);
 					vb.setEquipment(col[10]);

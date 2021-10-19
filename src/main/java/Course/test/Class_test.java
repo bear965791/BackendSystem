@@ -1,13 +1,14 @@
 package Course.test;
 
-import Course.service.ClassService;
-import Course.service.Impl.ClassServiceImpl;
-
 public class Class_test {
 
 	public static void main(String[] args) {
 		
-		ClassService classService = new ClassServiceImpl();
+		
+		 int totalPages = (int) (Math.ceil(29 / (double)5));
+		 System.out.println(totalPages);
+		
+//		ClassService classService = new ClassServiceImpl();
 		
 //		List<VideoBean> list = classService.search("4");
 //		System.out.println(list);

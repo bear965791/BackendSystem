@@ -20,8 +20,13 @@ public class NotCheckPageServlet extends HttpServlet {
 			throws ServletException, IOException {
 		int currentpage = 1;// 默認的當前頁
 		int pagesize = 5;// 每頁顯示的商品數
+		
 		String hql = "From VideoBean v WHERE v.checked = 0";
 		String curpage = request.getParameter("pageNo");
+		String servletPath = request.getServletPath();
+		request.setAttribute("servletPath", servletPath);
+		
+		
 		// 為當前頁賦值
 		if (!"".equals(curpage) && curpage != null) {
 			currentpage = Integer.parseInt(curpage);
@@ -31,6 +36,7 @@ public class NotCheckPageServlet extends HttpServlet {
 		PageBean pageBean = classService.findCourseByPage(currentpage, pagesize, hql);
 		// 將商品儲存到request
 		request.setAttribute("pageBean", pageBean);
+	
 		// 轉發頁面到商品瀏覽頁面
 		request.getRequestDispatcher("/course/noCheckCourseList.jsp").forward(request, response);
 		return;
