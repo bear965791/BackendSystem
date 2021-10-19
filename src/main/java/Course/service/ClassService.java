@@ -11,9 +11,12 @@ public interface ClassService {
 	void delete(int pk) ;
 	public void save(VideoBean vb);
 	public void update(VideoBean mem);
-	public List<Object> findBypartOfBody(String partOfBody);
-	public List<Object> findByPassAndPartOfBody(String partOfBody, String num);
-	public PageBean findCourseByPage(int currentPage, int pageSize, String hql);
 	public void passOrNot(int pass, int checked, int pk,Date sqlDate);
 	public List<VideoBean> search(String inputValue);
+	public List<VideoBean> findBypartOfBody(String partOfBody);
+	public List<VideoBean> findByPassAndPartOfBody(String partOfBody, int num);
+	public PageBean findCourseByPage(int currentPage, int pageSize, String hql);
+	
+//	public List<Object> findBypartOfBody(String partOfBody);
+//	public List<Object> findByPassAndPartOfBody(String partOfBody, String num);
 }

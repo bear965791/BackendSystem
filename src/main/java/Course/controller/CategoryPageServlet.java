@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Course.model.PageBean;
+import Course.model.VideoBean;
 import Course.service.ClassService;
 import Course.service.Impl.ClassServiceImpl;
 
@@ -34,11 +35,16 @@ public class CategoryPageServlet extends HttpServlet {
 		
 		//搜課程分類
 		String partOfBody = request.getParameter("body");
-		String part = new String(partOfBody.getBytes("ISO-8859-1"), "utf-8");
-		List<Object> partOfBodyList = classService.findBypartOfBody(part);
-		String hql = (String) partOfBodyList.get(0);
-		PageBean pageBean = classService.findCourseByPage(currentpage, pagesize, hql);
 		
+		String part = new String(partOfBody.getBytes("ISO-8859-1"), "utf-8");
+		List<VideoBean> partOfBodyList = classService.findBypartOfBody(part);
+		PageBean pageBean =  new PageBean();
+		pageBean.setVideoBean(partOfBodyList);
+		
+//		List<Object> partOfBodyList = classService.findBypartOfBody(part);
+//		String hql = (String) partOfBodyList.get(0);
+//		PageBean pageBean = classService.findCourseByPage(currentpage, pagesize, hql);
+//		
 		request.setAttribute("pageBean", pageBean);
 			
 		RequestDispatcher rd = request.getRequestDispatcher("/course/noCheckCourseList.jsp");

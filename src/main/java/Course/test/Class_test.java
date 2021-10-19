@@ -2,6 +2,8 @@ package Course.test;
 
 import java.util.List;
 
+import Course.dao.VideoDao;
+import Course.dao.Impl.VideoDaoImpl__Hibernate;
 import Course.model.VideoBean;
 import Course.service.ClassService;
 import Course.service.Impl.ClassServiceImpl;
@@ -12,23 +14,26 @@ public class Class_test {
 		
 		ClassService classService = new ClassServiceImpl();
 		
-		List<VideoBean> list = classService.search("4");
+//		List<VideoBean> list = classService.search("4");
+//		System.out.println(list);
+//		for(VideoBean bean : list) {
+//			System.out.println(bean.getName());
+//		}
+		
+		
+		
+		List<VideoBean> list = classService.findByPassAndPartOfBody("全身",1);
 		System.out.println(list);
 		for(VideoBean bean : list) {
-			System.out.println(bean.getName());
+			System.out.println(bean.getCoach());
 		}
 		
 		
 		
-//		List<VideoBean> list = classService.findByPassAndPartOfBody("二頭",0);
-//		System.out.println(list);
-//		for(VideoBean bean : list) {
-//			System.out.println(bean.getCoach());
-//		}
-		
 		
 //		List<VideoBean> list = classService.findBypartOfBody("二頭");	
 //		System.out.println(list);
+//		
 //		for(VideoBean bean : list) {
 //			System.out.println(bean.getCoach());
 //		}

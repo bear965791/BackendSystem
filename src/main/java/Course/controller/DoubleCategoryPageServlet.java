@@ -32,12 +32,17 @@ public class DoubleCategoryPageServlet extends HttpServlet {
 		ClassService classService = new ClassServiceImpl();	
 
 		String status = request.getParameter("status");
+		int num = Integer.parseInt(status);
 		String partOfBody = request.getParameter("partOfBody");
 		String part = new String(partOfBody.getBytes("ISO-8859-1"), "utf-8");
-		
-		List<Object> passList = classService.findByPassAndPartOfBody(part,status);
+		List<VideoBean> partOfBodyList = classService.findByPassAndPartOfBody(part,num);
 		PageBean pageBean =  new PageBean();
+		pageBean.setVideoBean(partOfBodyList);
+//		
+//		List<Object> passList = classService.findByPassAndPartOfBody(part,status);
+//		PageBean pageBean =  new PageBean();
 //		pageBean.setVideoBean(passList);
+		
 		request.setAttribute("pageBean", pageBean);
 		
 		

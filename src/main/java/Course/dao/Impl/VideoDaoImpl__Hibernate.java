@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 
 import Course.dao.VideoDao;
 import Course.model.VideoBean;
@@ -61,76 +62,134 @@ public class VideoDaoImpl__Hibernate implements VideoDao {
 
 
 	
+//	@Override
+//	public List<Object> findBypartOfBody(String partOfBody) {
+//		Session session = factory.getCurrentSession();
+//		List<VideoBean> list = new ArrayList<VideoBean>();
+//		List<Object> list2  =  new ArrayList<>();
+//		
+//		switch(partOfBody){
+//			case "0" :
+//				String hql1 = "FROM VideoBean WHERE checked = 0";
+//				list = session.createQuery(hql1, VideoBean.class)
+//							.getResultList();
+//				list2.add(hql1);
+//				list2.add(list);
+//				break;
+//			default:
+//				String parameter = partOfBody;
+//				String hql2 = "FROM VideoBean WHERE checked = 0 and partOfBody = "+parameter;
+//				
+//				list = session.createQuery(hql2, VideoBean.class).getResultList();
+//				list2.add(hql2);
+//				list2.add(list);
+//		}
+//		return list2;
+//	}
 	@Override
-	public List<Object> findBypartOfBody(String partOfBody) {
+	public List<VideoBean> findBypartOfBody(String partOfBody) {
 		Session session = factory.getCurrentSession();
 		List<VideoBean> list = new ArrayList<VideoBean>();
-		List<Object> list2  =  new ArrayList<>();
 		
 		switch(partOfBody){
 			case "0" :
 				String hql1 = "FROM VideoBean WHERE checked = 0";
 				list = session.createQuery(hql1, VideoBean.class)
 							.getResultList();
-				list2.add(hql1);
-				list2.add(list);
 				break;
 			default:
-				String parameter = partOfBody;
-				String hql2 = "FROM VideoBean WHERE checked = 0 and partOfBody = " +parameter;
-				
-				list = session.createQuery(hql2, VideoBean.class).getResultList();
-				list2.add(hql2);
-				list2.add(list);
+				String hql2 = "FROM VideoBean WHERE checked = 0 and partOfBody = :partOfBody";
+				list = session.createQuery(hql2, VideoBean.class)
+							  .setParameter("partOfBody", partOfBody)
+							  .getResultList();
 		}
-		return list2;
+		return list;
 	}
 
 
+
+//	@Override
+//	public  List<Object> findByPassAndPartOfBody(String partOfBody, String num) {
+//		Session session = factory.getCurrentSession();
+//		List<VideoBean> list = new ArrayList<VideoBean>();
+//		List<Object> list2  =  new ArrayList<>();
+//
+//		System.out.println(partOfBody+num);
+//	
+//		if(num.equals("2")) {
+//			
+//			if(partOfBody.equals("0")) {
+//				String hql = "FROM VideoBean WHERE checked = 1";
+//				list = session.createQuery(hql, VideoBean.class)
+//							.getResultList();
+//				list2.add(hql);
+//				list2.add(list);
+//				
+//			}else {
+//				  String parameter = partOfBody;
+//				  String hql = "FROM VideoBean WHERE checked = 1 AND partOfBody = " + parameter;
+//				     list = session.createQuery(hql, VideoBean.class).getResultList();
+//				
+//				list2.add(hql);
+//				list2.add(list);
+//			}
+//			
+//		}else if(partOfBody.equals("0")){
+//			 String parameter = num;
+//			String hql = "FROM VideoBean WHERE checked = 1 AND  pass = " +parameter;
+//			list = session.createQuery(hql, VideoBean.class).getResultList();
+//			list2.add(hql);
+//			list2.add(list);
+//			
+//		}else {
+//			String parameter = num;
+//			String hql = "FROM VideoBean WHERE checked = 1 AND partOfBody = :partOfBody AND pass =" +parameter;
+//			list = session.createQuery(hql, VideoBean.class)
+//						  .setParameter("num", num)
+//						.getResultList();
+//			list2.add(hql);
+//			list2.add(list);
+//			
+//		}
+//		return list2;
+//	}
+//	
+//	
+	
+
 	@Override
-	public  List<Object> findByPassAndPartOfBody(String partOfBody, String num) {
+	public  List<VideoBean> findByPassAndPartOfBody(String partOfBody, int num) {
 		Session session = factory.getCurrentSession();
 		List<VideoBean> list = new ArrayList<VideoBean>();
-		List<Object> list2  =  new ArrayList<>();
-
-		System.out.println(partOfBody+num);
-	
-		if(num.equals("2")) {
+		if(num == 2) {
 			
 			if(partOfBody.equals("0")) {
 				String hql = "FROM VideoBean WHERE checked = 1";
 				list = session.createQuery(hql, VideoBean.class)
 							.getResultList();
-				list2.add(hql);
-				list2.add(list);
-				
 			}else {
 				  String parameter = partOfBody;
-				  String hql = "FROM VideoBean WHERE checked = 1 AND partOfBody = " + parameter;
-				     list = session.createQuery(hql, VideoBean.class).getResultList();
-				
-				list2.add(hql);
-				list2.add(list);
+				  String hql = "FROM VideoBean WHERE checked = 1 AND partOfBody = :partOfBody" ;
+				     list = session.createQuery(hql, VideoBean.class)
+				    		 .setParameter("partOfBody", partOfBody)
+				    		 .getResultList();
 			}
 			
 		}else if(partOfBody.equals("0")){
-			 String parameter = num;
-			String hql = "FROM VideoBean WHERE checked = 1 AND  pass = " +parameter;
-			list = session.createQuery(hql, VideoBean.class).getResultList();
-			list2.add(hql);
-			list2.add(list);
+			String hql = "FROM VideoBean WHERE checked = 1 AND  pass = :num" ;
+			list = session.createQuery(hql, VideoBean.class)
+					.setParameter("num", num)
+					.getResultList();
 			
 		}else {
-			String parameter = num;
-			String hql = "FROM VideoBean WHERE checked = 1 AND partOfBody = :partOfBody AND pass =" +parameter;
+			String hql = "FROM VideoBean WHERE checked = 1 AND partOfBody = :partOfBody AND pass = :num" ;
 			list = session.createQuery(hql, VideoBean.class)
 						  .setParameter("num", num)
-						.getResultList();
-			list2.add(hql);
-			list2.add(list);
+						  .setParameter("partOfBody", partOfBody)
+						  .getResultList();
 			
 		}
-		return list2;
+		return list;
 	}
 	
 	
@@ -162,6 +221,13 @@ public class VideoDaoImpl__Hibernate implements VideoDao {
 		List<VideoBean> list = session.createQuery(hql, VideoBean.class).setFirstResult( (currentPage - 1) * pageSize)
 				.setMaxResults(pageSize).getResultList();	
 		return list;
+	}
+
+	@Override
+	public List<VideoBean> findVideoByPage(List<VideoBean> list,int currentPage, int pageSize) {
+		@SuppressWarnings("unchecked")
+		List<VideoBean> list2 = ((Query<VideoBean>) list).setFirstResult( (currentPage - 1) * pageSize).setMaxResults(pageSize).getResultList();
+		return list2;
 	}
 
 

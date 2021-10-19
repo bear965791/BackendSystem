@@ -104,11 +104,30 @@ public class ClassServiceImpl implements ClassService {
 		return;
 		
 	}
-
+//
+//	@Override
+//	public List<Object> findBypartOfBody(String partOfBody) {
+//		Session session = factory.getCurrentSession();
+//		List<Object> list = null;
+//		Transaction tx = null;
+//		try {
+//			tx = session.beginTransaction();
+//			list = videoDao.findBypartOfBody(partOfBody);
+//			tx.commit();
+//		}catch(Exception e) {
+//			if(tx != null) {
+//				tx.rollback();
+//				e.printStackTrace();
+//				throw new RuntimeException(e);				
+//			}
+//		}
+//		return list;
+//	}
+	
 	@Override
-	public List<Object> findBypartOfBody(String partOfBody) {
+	public List<VideoBean> findBypartOfBody(String partOfBody) {
 		Session session = factory.getCurrentSession();
-		List<Object> list = null;
+		List<VideoBean> list = null;
 		Transaction tx = null;
 		try {
 			tx = session.beginTransaction();
@@ -125,10 +144,29 @@ public class ClassServiceImpl implements ClassService {
 	}
 
 
+//	@Override
+//	public List<Object> findByPassAndPartOfBody(String partOfBody, String num) {
+//		Session session = factory.getCurrentSession();
+//		List<Object> list = null;
+//		Transaction tx = null;
+//		try {
+//			tx = session.beginTransaction();
+//			list = videoDao.findByPassAndPartOfBody(partOfBody,num);
+//			tx.commit();
+//		}catch(Exception e) {
+//			if(tx != null) {
+//				tx.rollback();
+//				e.printStackTrace();
+//				throw new RuntimeException(e);				
+//			}
+//		}
+//		return list;
+//	}
+	
 	@Override
-	public List<Object> findByPassAndPartOfBody(String partOfBody, String num) {
+	public List<VideoBean> findByPassAndPartOfBody(String partOfBody, int num) {
 		Session session = factory.getCurrentSession();
-		List<Object> list = null;
+		List<VideoBean> list = null;
 		Transaction tx = null;
 		try {
 			tx = session.beginTransaction();
