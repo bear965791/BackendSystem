@@ -29,7 +29,7 @@ public class VideoBean implements Serializable {
 	private String level; //適合的層級
 	private Integer pass; //課程是否審核成功
 	private	Integer checked; //審核狀態（未審核/已審核）
-	
+	private Date checktime;
 	public VideoBean(Integer videoId) {
 		this.videoId = videoId;
 	}
@@ -38,6 +38,12 @@ public class VideoBean implements Serializable {
 		this.name = name;
 	}
 	
+	public Date getChecktime() {
+		return checktime;
+	}
+	public void setChecktime(Date checktime) {
+		this.checktime = checktime;
+	}
 	public VideoBean() {
 		super();
 	}

@@ -125,11 +125,16 @@
                             </li>
                         </ul>
 					
+                     <form method="post" action="../backStage/notCheckCoursePage/checking">
                         <div class="d-flex justify-content-center mb-5">
-                            <button type="button" class="btn btn-outline-primary me-2 ps-4 pe-4 me-5">通過</button>
-                            <button type="button" class="btn btn-outline-danger ms-2  ps-4 pe-4">拒絕</button>
-                        </div>
+                         <input type="hidden" name="videoId" value="${VideoBean.videoId}">
+					       <input type="submit" class="btn-check" name="passOrNot" value="1" id="btn-check-outlined" autocomplete="off">
+					       <label class="btn btn-outline-primary  me-5" for="btn-check-outlined">通過</label>
+					       <input type="submit" class="btn-check" name="passOrNot" value="0" id="danger-outlined" autocomplete="off">
+					       <label class="btn btn-outline-danger ms-5" for="danger-outlined">拒絕</label>
 
+                        </div>
+                        </form>
                     </div>
 
 

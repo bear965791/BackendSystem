@@ -11,13 +11,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Course.model.PageBean;
+import Course.model.VideoBean;
 import Course.service.ClassService;
 import Course.service.Impl.ClassServiceImpl;
 
 
 //查詢功能
-@WebServlet("/Course/CategoryPage.do")
-public class CategoryPageServlet extends HttpServlet {
+@WebServlet("/Course/DoubleCategoryPage.do")
+public class DoubleCategoryPageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
    
@@ -28,21 +29,23 @@ public class CategoryPageServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//傳入挑選的選項去搜尋
-		ClassService classService = new ClassServiceImpl();
-		int currentpage = 1;// 默認的當前頁
-		int pagesize = 5;// 每頁顯示的商品數
-		
-		//搜課程分類
-		String partOfBody = request.getParameter("body");
+		ClassService classService = new ClassServiceImpl();	
+
+		String status = request.getParameter("status");
+		String partOfBody = request.getParameter("partOfBody");
 		String part = new String(partOfBody.getBytes("ISO-8859-1"), "utf-8");
-		List<Object> partOfBodyList = classService.findBypartOfBody(part);
-		String hql = (String) partOfBodyList.get(0);
-		PageBean pageBean = classService.findCourseByPage(currentpage, pagesize, hql);
 		
+		List<Object> passList = classService.findByPassAndPartOfBody(part,status);
+		PageBean pageBean =  new PageBean();
+//		pageBean.setVideoBean(passList);
 		request.setAttribute("pageBean", pageBean);
-			
-		RequestDispatcher rd = request.getRequestDispatcher("/course/noCheckCourseList.jsp");
 		
+		
+		//輸入字串
+//		String partOfBody = request.getParameter("partOfBody");
+		
+		RequestDispatcher rd = request.getRequestDispatcher("/course/courseList.jsp");
+//		RequestDispatcher rd = request.getRequestDispatcher("/backStage/checkedCoursePage");
 		rd.forward(request, response);
 		return;
 

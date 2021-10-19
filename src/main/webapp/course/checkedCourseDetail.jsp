@@ -12,9 +12,6 @@
 </head>
 <body>
 
-  
-
-
     <section class="member_Backend">
         <div class="container-fluid">
             <div class="row">
@@ -130,16 +127,12 @@
                         </ul>
 
                         <div class="d-flex justify-content-center mb-5">
-                            <a href="<c:url value='/course/courseList.jsp' />" class="btn btn-outline-dark">
+                            <a href="<c:url value='/backStage/checkedCoursePage' />" class="btn btn-outline-dark">
                                 <span>回上一頁</span>
                             </a>
                         </div>
 
                     </div>
-
-
-
-                  
 
                 </div>
             </div>

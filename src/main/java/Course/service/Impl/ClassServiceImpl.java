@@ -1,5 +1,6 @@
 package Course.service.Impl;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -8,6 +9,7 @@ import org.hibernate.Transaction;
 
 import Course.dao.VideoDao;
 import Course.dao.Impl.VideoDaoImpl__Hibernate;
+import Course.model.PageBean;
 import Course.model.VideoBean;
 import Course.service.ClassService;
 import Course.util.HibernateUtils;
@@ -43,25 +45,6 @@ public class ClassServiceImpl implements ClassService {
 		return bean;
 	}
 
-	@Override
-	public List<VideoBean> getNoCheckPageCourse() {
-		
-		Session session = factory.getCurrentSession();
-		List<VideoBean> list = null;
-		Transaction tx = null;
-		try {
-			tx = session.beginTransaction();
-			list = videoDao.getNoCheckPageCourse();
-			tx.commit();
-		}catch(Exception e) {
-			if(tx != null) {
-				tx.rollback();
-				e.printStackTrace();
-				throw new RuntimeException(e);				
-			}
-		}
-		return list;
-	}
 
 	@Override
 	public void delete(int pk) {
@@ -122,31 +105,10 @@ public class ClassServiceImpl implements ClassService {
 		
 	}
 
-
 	@Override
-	public List<VideoBean> findByPass(int num) {
+	public List<Object> findBypartOfBody(String partOfBody) {
 		Session session = factory.getCurrentSession();
-		List<VideoBean> list = null;
-		Transaction tx = null;
-		try {
-			tx = session.beginTransaction();
-			list = videoDao.findByPass(num);
-			tx.commit();
-		}catch(Exception e) {
-			if(tx != null) {
-				tx.rollback();
-				e.printStackTrace();
-				throw new RuntimeException(e);				
-			}
-		}
-		return list;
-	}
-
-
-	@Override
-	public List<VideoBean> findBypartOfBody(String partOfBody) {
-		Session session = factory.getCurrentSession();
-		List<VideoBean> list = null;
+		List<Object> list = null;
 		Transaction tx = null;
 		try {
 			tx = session.beginTransaction();
@@ -164,13 +126,13 @@ public class ClassServiceImpl implements ClassService {
 
 
 	@Override
-	public List<VideoBean> getCheckedPageCourse() {
+	public List<Object> findByPassAndPartOfBody(String partOfBody, String num) {
 		Session session = factory.getCurrentSession();
-		List<VideoBean> list = null;
+		List<Object> list = null;
 		Transaction tx = null;
 		try {
 			tx = session.beginTransaction();
-			list = videoDao.getCheckedPageCourse();
+			list = videoDao.findByPassAndPartOfBody(partOfBody,num);
 			tx.commit();
 		}catch(Exception e) {
 			if(tx != null) {
@@ -182,5 +144,80 @@ public class ClassServiceImpl implements ClassService {
 		return list;
 	}
 	
+	@Override
+	 public PageBean findCourseByPage(int currentPage, int pageSize, String hql) {
+	  long count; 
+	  int totalpage;
+	  Session session = factory.getCurrentSession();
+	  PageBean pageBean = new PageBean();
+	  Transaction tx = null;
+	  try {
+	   tx = session.beginTransaction();
+	   // 返回資料庫中的商品總數
+	   count = (long) videoDao.getCountsAndPage(pageSize, hql).get(0);
+	   // 計算總頁數
+	   totalpage = (int) videoDao.getCountsAndPage(pageSize, hql).get(1);
+	   
+	   // 查詢到的當前頁面要顯示的商品
+	   List<VideoBean> course = videoDao.findVideoByPage(currentPage, pageSize, hql);
 
+	   pageBean.setCourseCount(count);
+	   pageBean.setVideoBean(course);
+	   pageBean.setCurrentPage(currentPage);
+	   pageBean.setTotalPage(totalpage);
+
+	   tx.commit();
+
+	  } catch (Exception e) {
+	   if (tx != null) {
+	    tx.rollback();
+	    e.printStackTrace();
+	    throw new RuntimeException(e);
+	   }
+	  }
+	  return pageBean;
+	 }
+
+	@Override
+	public void passOrNot(int pass, int checked, int pk,Date sqlDate) {
+		Session session = factory.getCurrentSession();
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			VideoBean vb = videoDao.findById(pk);
+			vb.setPass(pass);
+			vb.setChecked(checked);
+			vb.setChecktime(sqlDate);
+			videoDao.updatPassAndChecked(vb);
+			tx.commit();
+
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+				e.printStackTrace();
+				throw new RuntimeException(e);
+			}
+		}
+
+	}
+
+
+	@Override
+	public List<VideoBean> search(String inputValue) {
+		Session session = factory.getCurrentSession();
+		List<VideoBean> list = null;
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			list = videoDao.findByInputValue(inputValue);
+			tx.commit();
+		}catch(Exception e) {
+			if(tx != null) {
+				tx.rollback();
+				e.printStackTrace();
+				throw new RuntimeException(e);				
+			}
+		}
+		return list;
+	}
 }

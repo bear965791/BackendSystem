@@ -12,11 +12,26 @@ public class Class_test {
 		
 		ClassService classService = new ClassServiceImpl();
 		
-		List<VideoBean> list = classService.findBypartOfBody("二頭");	
+		List<VideoBean> list = classService.search("4");
 		System.out.println(list);
 		for(VideoBean bean : list) {
-			System.out.println(bean.getCoach());
+			System.out.println(bean.getName());
 		}
+		
+		
+		
+//		List<VideoBean> list = classService.findByPassAndPartOfBody("二頭",0);
+//		System.out.println(list);
+//		for(VideoBean bean : list) {
+//			System.out.println(bean.getCoach());
+//		}
+		
+		
+//		List<VideoBean> list = classService.findBypartOfBody("二頭");	
+//		System.out.println(list);
+//		for(VideoBean bean : list) {
+//			System.out.println(bean.getCoach());
+//		}
 		
 //		int num =1;
 //		List<VideoBean> list = classService.findByPass(1);	

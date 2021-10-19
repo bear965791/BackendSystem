@@ -77,13 +77,14 @@
                     <div class="mb-5">
                         <ul class="nav nav-tabs border-0 border-bottom">
                             <li  class="nav-item ">
-                                <a class="nav-link active fw-bold" href="<c:url value='/backStage/CheckedVideoPageServlet.do'/>">課程列表</a>
+                                <a class="nav-link active fw-bold" href="<c:url value='/backStage/checkedCoursePage'/>">課程列表</a>
                             </li >
                             <li class="nav nav-tabs border-0">
-                                <a class="nav-link text-dark" href="<c:url value='/backStage/noCheckCoursePage'/>">尚未審核</a>
+                                <a class="nav-link text-dark" href="<c:url value='/backStage/notCheckCoursePage'/>">尚未審核</a>
                             </li>
                         </ul>
                         <!-- 查詢列 -->
+                        <FORM action="<c:url value='/Course/DoubleCategoryPage.do' />" method="POST"> 
                         <div class="row row-cols-3 border-0 py-3 ps-4 pe-4">
 
                             <div class="col mb-4">
@@ -91,10 +92,10 @@
                                   <div class="col-auto">
                                     <label for="inputMemberId" class="col-form-label me-2">審核狀態</label>
                                   </div>
-                                  <select class="form-select me-3" aria-label="Default select example">
-                                    <option selected>全部</option>
+                                  <select class="form-select me-1" aria-label="Default select example" name="status">
+                                    <option selected  value="2">全部</option>
                                     <option value="1">通過</option>
-                                    <option value="2">未通過</option>
+                                    <option value="0">未通過</option>
                                   </select>                                 
                                 </div>
                             </div>
@@ -103,27 +104,32 @@
                                   <div class="col-auto">
                                     <label for="inputMemberId" class="col-form-label me-2">課程分類</label>
                                   </div>
-                                  <select class="form-select ms-3" aria-label="Default select example">
-                                    <option selected>全部</option>
-                                    <option value="1">上半身</option>
-                                    <option value="2">下半身</option>
-                                    <option value="3">Three</option>
+                                  <select class="form-select ms-1 me-2" aria-label="Default select example" name="partOfBody">
+                                   <option selected value="0">全部</option>
+                                    <option value="全身" >全身</option>
+                                    <option value="背部">背部</option>
+                                    <option value="二頭">二頭</option>
                                   </select>                              
+                            	<input class="btn btn-outline-primary" type="submit" value='查詢'>
                                 </div>
                             </div>
+                             
                             <div class="col mb-4">
                                 <div class="d-flex">
                                   <div class="col-auto">
-                                    <label for="inputMemberId" class="col-form-label me-2">課程分類</label>
+                                    <label for="inputMemberId" class="col-form-label me-2">課程編號</label>
                                   </div>
                                   <input class="form-control me-2" id="inputMemberPhone" type="text" placeholder="Search" aria-label="Search">
                                                         
                                   <div class="col-auto">
-                                    <button class="btn btn-outline-primary" type="submit">查詢<i class="bi bi-search ms-2"></i> </button>
+                                   <Input class="btn btn-outline-primary" type="submit" value='查詢' name="inputValue">
                                   </div>
                                 </div>
                             </div>
                         </div>
+                      </FORM>
+                        
+                    
                         <!-- 表格 -->
                         <table class="table table-striped mb-0 text-center">
                             <thead>
@@ -140,7 +146,7 @@
                             </thead>
                             <tbody>
                               <!-- 表格項目 -->
-                                 <c:forEach var="entry"  items="${product_video}" > 
+                                 <c:forEach var="entry"  items="${pageBean.videoBean}" > 
 		                              <!-- 表格項目動態新增 -->
 		                              <tr class="align-middle">
 		                                <th scope="row ">${entry.name}</th>
@@ -165,24 +171,34 @@
                             </tbody>
                         </table>
                     </div>
-            
-                    <nav class="d-flex justify-content-center mt-3 mb-3">
-                          <ul class="pagination">
-                            <li class="page-item">
-                              <a class="page-link" href="#" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                              </a>
-                            </li>
-                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item">
-                              <a class="page-link" href="#" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                              </a>
-                            </li>
-                          </ul>
-                    </nav>
+                <nav class="d-flex justify-content-center mt-3 mb-3">
+					       <ul class="pagination">
+					        <li class="page-item">
+					        <c:if test="${pageBean.currentPage > 1}">
+					          <a class="page-link"
+					           href="<c:url value='/backStage/notCheckCoursePage?pageNo=${pageBean.currentPage-1}' />"
+					           aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+					          </a>
+					         </c:if>
+					        </li>
+        
+        
+       						<c:forEach var="page"  begin="1" end="${pageBean.totalPage}" step="1" >
+                               
+        					<li class="page-item">
+        					<a class="page-link" href="<c:url value='/backStage/notCheckCoursePage?pageNo=${page}'/>">${page}</a>
+        					</li>
+                            </c:forEach>
+     					        <li class="page-item">
+					         <c:if test="${pageBean.currentPage != pageBean.totalPage}">
+					          <a class="page-link"
+					           href="<c:url value='/backStage/notCheckCoursePage?pageNo=${pageBean.currentPage+1}' />"
+					           aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+					          </a>
+					         </c:if>
+					        </li>
+					       </ul>
+      					</nav>
                   </div>
                     
                 </div>
