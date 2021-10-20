@@ -1,0 +1,9 @@
+@charset "UTF-8";
+.table {
+      table-layout: fixed; 
+      word-wrap:break-word;
+}
+
+thead th:first-child,tbody td:first-child {
+      width: 300px;
+}
