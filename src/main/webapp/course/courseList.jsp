@@ -59,10 +59,6 @@
                         </div>
                         <div class="nav-link text-dark">
                           <i class="fa fa-angle-right" aria-hidden="true"></i>
-                          <span class="ms-3">課程資料</span>
-                        </div>
-                        <div class="nav-link text-dark">
-                          <i class="fa fa-angle-right" aria-hidden="true"></i>
                           <span class="ms-3 fw-bold">已審核課程</span>
                         </div>
                     </div>
@@ -72,10 +68,10 @@
                     <div class="mb-5">
                         <ul class="nav nav-tabs border-0 border-bottom">
                    			<li  class="nav-item ">
-                                <a class="nav-link active fw-bold " href="<c:url value='/backStage/checkedCoursePage'/>">課程列表</a>
+                                <a class="nav-link active fw-bold " href="<c:url value='/backStage/checkedCoursePage'/>">已審核課程</a>
                             </li >
                             <li class="nav nav-tabs border-0">
-                                <a class="nav-link text-dark" href="<c:url value='/backStage/notCheckCoursePage' />">尚未審核</a>
+                                <a class="nav-link text-dark" href="<c:url value='/backStage/notCheckCoursePage' />">未審核課程</a>
                             </li>
                         </ul>
                         <!-- 查詢列 -->

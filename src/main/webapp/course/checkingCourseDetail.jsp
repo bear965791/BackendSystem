@@ -61,8 +61,12 @@
                                 <i class="bx bx-video"></i>
                                 <span>課程管理</span>
                             </div>
+                            <div class="nav-link text-dark">
+	                          <i class="fa fa-angle-right" aria-hidden="true"></i>
+	                          <span class="ms-3">未審核課程</span>
+	                        </div>
                             <i class="fa fa-angle-right" aria-hidden="true"></i>
-                            <span class="ms-3 fw-bold">課程列表</span>
+                            <span class="ms-3 fw-bold">課程資料</span>
                         </div>
                     </nav>
 
@@ -107,12 +111,11 @@
                                 <span>${VideoBean.equipment}</span>
                             </li>
                             <li>
-                                <label class="col-sm-2 col-form-label-lg">課程適合哪些人:</label> 
-                                <span>${VideoBean.level}</span>
+                                <label class="col-sm-2 col-form-label-lg">課程適合程度:</label> 
+                                <span>Level${VideoBean.level}</span>
                                 </li>
                                 <li>
                                 <label class="col-sm-2 col-form-label-lg">課程分類:</label> 
-                                <span>${VideoBean.category}</span>
                                 <span>${VideoBean.category}</span>
                             </li>
                             <li>
