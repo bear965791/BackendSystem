@@ -87,7 +87,7 @@
                             <div class="col mb-4">
                                 <div class="d-flex">
                                   <div class="col-auto">
-                                    <label for="inputMemberId" class="col-form-label me-2">課程分類</label>
+                                    <label for="inputMemberId" class="col-form-label ">課程分類</label>
                                   </div>
                                   <select class="form-select ms-3 me-2" name="partOfBody">
                                     <option  value="0" >全部</option>
@@ -141,13 +141,13 @@
 		                                <td>${entry.time}</td>
 		                                <td>
 		                                <c:choose>
-							              <c:when test="${entry.pass == 0}">不通過</c:when> 
-										  <c:otherwise>通過</c:otherwise> 
+							              <c:when test="${entry.checked == 0}">待審核</c:when> 
+										  <c:otherwise>已審核</c:otherwise> 
 							           </c:choose>
 							           </td>
 		                                <td>
 		                                  <a href="<c:url value='/course/CheckingVideoDetail.do?videoId=${entry.videoId}' />" class="btn btn-outline-dark">
-		                                    <span>查看</span>
+		                                    <span>審核</span>
 		                                  </a>
 		                                </td>
 		                              </tr>

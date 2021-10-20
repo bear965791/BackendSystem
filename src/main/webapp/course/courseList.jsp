@@ -85,9 +85,9 @@
                             <div class="col mb-4">
                                 <div class="d-flex">
                                   <div class="col-auto">
-                                    <label for="inputMemberId" class="col-form-label me-2">審核狀態</label>
+                                    <label for="inputMemberId" class="col-form-label ">審核狀態</label>
                                   </div>
-                                  <select class="form-select" aria-label="Default select example" name="status">
+                                  <select class="form-select  ms-3 me-2" aria-label="Default select example" name="status">
                                     <option selected  value="2">全部</option>
                                     <option value="1">通過</option>
                                     <option value="0">未通過</option>
@@ -97,9 +97,9 @@
                             <div class="col mb-4">
                                 <div class="d-flex">
                                   <div class="col-auto">
-                                    <label for="inputMemberId" class="col-form-label me-2 ms-2">課程分類</label>
+                                    <label for="inputMemberId" class="col-form-label ms-2">課程分類</label>
                                   </div>
-                                  <select class="form-select ms-1 me-2" aria-label="Default select example" name="partOfBody">
+                                  <select class="form-select ms-3 me-2" aria-label="Default select example" name="partOfBody">
                                    <option value="0" >全部</option>
                                     <option value="全身">全身</option>
                                     <option value="背">背</option>
@@ -148,7 +148,7 @@
 		                                <td>${entry.partOfBody}</td>
 		                                <td>${entry.coach}</td>
 		                                <td>${entry.price}</td>
-		                                <td>${entry.time}</td>
+		                                <td>${entry.checktime}</td>
 		                                <td>
 		                                <c:choose>
 										  <c:when test="${entry.pass == 0}">不通過</c:when> 
