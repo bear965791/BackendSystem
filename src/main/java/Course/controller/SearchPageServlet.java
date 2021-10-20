@@ -21,31 +21,47 @@ public class SearchPageServlet extends HttpServlet {
    
  
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doPost(request, response);
-	}
-
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ClassService classService = new ClassServiceImpl();
 		VideoDao videoDao = new VideoDaoImpl__Hibernate();
 		
 		int currentpage = 1;// 默認的當前頁
 		int pagesize = 5;// 每頁顯示的商品數
 		
-		//輸入字串
+		String servletPath = request.getServletPath();
+		request.setAttribute("servletPath", servletPath);
+		
+		String curpage = request.getParameter("pageNo");
+		// 為當前頁賦值
+		if (!"".equals(curpage) && curpage != null) {
+			currentpage = Integer.parseInt(curpage);
+		}
+		
 		String inputValue = request.getParameter("inputValue");
-		String textValue = new String(inputValue.getBytes("ISO-8859-1"), "utf-8");
+		String checked = request.getParameter("checked");
+		System.out.println("checked========="+checked);
 		
-		String hql =  videoDao.getByInputValueHql(textValue);
-		PageBean pageBean = classService.findCourseByPage(currentpage, pagesize, hql);
-		
-		
-		request.setAttribute("pageBean", pageBean);
-		
-		RequestDispatcher rd = request.getRequestDispatcher("/course/noCheckCourseList.jsp");
-		
-		rd.forward(request, response);
+		if(checked.equals("1")){
+			String hql =  videoDao.getByInputValueHql(inputValue,checked);
+			PageBean pageBean = classService.findCourseByPage(currentpage, pagesize, hql);
+			request.setAttribute("pageBean", pageBean);
+			RequestDispatcher rd = request.getRequestDispatcher("/course/courseList.jsp");
+			rd.forward(request, response);
+			
+		}else {
+			
+			String part = new String(inputValue.getBytes("ISO-8859-1"), "utf-8");
+			String hql =  videoDao.getByInputValueHql(part,checked);
+			PageBean pageBean = classService.findCourseByPage(currentpage, pagesize, hql);
+			request.setAttribute("pageBean", pageBean);			
+			RequestDispatcher rd = request.getRequestDispatcher("/course/noCheckCourseList.jsp");
+			rd.forward(request, response);
+		}
 		return;
+	}
+
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doGet(request,response);
 	}
 
 }

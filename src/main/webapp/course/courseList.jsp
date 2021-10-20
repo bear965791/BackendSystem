@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c"   uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"  style="overflow-x:hidden;">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,11 +12,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
-<body>
-
-  
-
-
+<body  style="overflow-x:hidden;">
     <section class="member_Backend">
         <div class="container-fluid">
             <div class="row vh-100">
@@ -43,8 +39,7 @@
                   </div>
                 </div>
 
-
-                <div class="col-10 p-0">
+   				<div class="col-10 p-0">
                   <!-- 導覽列 -->
                   <nav class="navbar border-bottom shadow-sm">
                     <div class="container-fluid d-flex  justify-content-end ">
@@ -76,23 +71,23 @@
                   <div class="container-fluid p-0">
                     <div class="mb-5">
                         <ul class="nav nav-tabs border-0 border-bottom">
-                            <li  class="nav-item ">
-                                <a class="nav-link active fw-bold" href="<c:url value='/backStage/checkedCoursePage'/>">課程列表</a>
+                   			<li  class="nav-item ">
+                                <a class="nav-link active fw-bold " href="<c:url value='/backStage/checkedCoursePage'/>">課程列表</a>
                             </li >
                             <li class="nav nav-tabs border-0">
-                                <a class="nav-link text-dark" href="<c:url value='/backStage/notCheckCoursePage'/>">尚未審核</a>
+                                <a class="nav-link text-dark" href="<c:url value='/backStage/notCheckCoursePage' />">尚未審核</a>
                             </li>
                         </ul>
                         <!-- 查詢列 -->
-                        <FORM action="<c:url value='/Course/DoubleCategoryPage.do' />" method="GET"> 
                         <div class="row row-cols-3 border-0 py-3 ps-4 pe-4">
+                        <FORM class="col-6 d-flex" action="<c:url value='/Course/DoubleCategoryPage.do' />" method="GET"> 
 
                             <div class="col mb-4">
                                 <div class="d-flex">
                                   <div class="col-auto">
                                     <label for="inputMemberId" class="col-form-label me-2">審核狀態</label>
                                   </div>
-                                  <select class="form-select me-1" aria-label="Default select example" name="status">
+                                  <select class="form-select" aria-label="Default select example" name="status">
                                     <option selected  value="2">全部</option>
                                     <option value="1">通過</option>
                                     <option value="0">未通過</option>
@@ -102,7 +97,7 @@
                             <div class="col mb-4">
                                 <div class="d-flex">
                                   <div class="col-auto">
-                                    <label for="inputMemberId" class="col-form-label me-2">課程分類</label>
+                                    <label for="inputMemberId" class="col-form-label me-2 ms-2">課程分類</label>
                                   </div>
                                   <select class="form-select ms-1 me-2" aria-label="Default select example" name="partOfBody">
                                    <option value="0" >全部</option>
@@ -116,23 +111,19 @@
                             	<input class="btn btn-outline-primary" type="submit" value='查詢'>
                                 </div>
                             </div>
-                             
-                            <div class="col mb-4">
-                                <div class="d-flex">
-                                  <div class="col-auto">
-                                    <label for="inputMemberId" class="col-form-label me-2">課程編號</label>
-                                  </div>
-                                  <input class="form-control me-2" id="inputMemberPhone" type="text" placeholder="Search" aria-label="Search">
-                                                        
-                                  <div class="col-auto">
-                                   <Input class="btn btn-outline-primary" type="submit" value='查詢' name="inputValue">
-                                  </div>
-                                </div>
-                            </div>
+                            </FORM>
+                              <FORM class="col-5" action="<c:url value='/Course/SearchPageServlet' />" method="GET"> 
+                            	<div class="col mb-4">
+	                            	<div class="d-flex">
+	                                	<input class="form-control me-2" id="inputMemberPhone" type="text" placeholder="請輸入課程編號或名稱"  name="inputValue">                                                  
+	                            	<div class="col-auto">
+			                            <Input type='hidden' name='checked' value='1'>
+			                            <Input class="btn btn-outline-primary" type="submit" value='查詢' >
+	                                  </div>
+	                                </div>
+                            	</div>
+                      		</FORM>
                         </div>
-                      </FORM>
-                        
-                    
                         <!-- 表格 -->
                         <table class="table table-striped mb-0 text-center">
                             <thead>
@@ -174,13 +165,18 @@
                             </tbody>
                         </table>
                     </div>
-			           <nav class="d-flex justify-content-center mt-3 mb-3">
-			             <ul class="pagination">
-			             <li class="page-item">
-			        	  <c:if test="${pageBean.currentPage > 1}">
+			         		<nav class="d-flex justify-content-center mt-3 mb-3">
+                          <ul class="pagination">
+                           <li class="page-item">
+						        <c:if test="${pageBean.currentPage > 1}">
 						        <c:choose>
 						        	<c:when  test="${!empty param.partOfBody || !empty param.status}">
 							          <a class="page-link" href="<c:url value='${servletPath}?status=${param.status}&partOfBody=${param.partOfBody}&pageNo=${pageBean.currentPage-1}' />" aria-label="Previous"> 
+							          	<span aria-hidden="true">&laquo;</span>
+							          </a>
+						          </c:when>
+						          <c:when  test="${!empty param.inputValue || !empty param.checked}">
+							          <a class="page-link" href="<c:url value='${servletPath}?inputValue=${param.inputValue}&checked=${param.checked}&pageNo=${pageBean.currentPage-1}' />" aria-label="Previous"> 
 							          	<span aria-hidden="true">&laquo;</span>
 							          </a>
 						          </c:when>
@@ -190,7 +186,7 @@
 							          </a>
 						          	</c:otherwise>
 						        </c:choose> 
-
+						        
 						         </c:if>
 						         </li>
 						       	<c:if test="${pageBean.totalPage > 1}">
@@ -201,6 +197,11 @@
 						        				<a class="page-link" href="<c:url value='${servletPath}?status=${param.status}&partOfBody=${param.partOfBody}&partOfBody=${param.partOfBody}&pageNo=${page}'/>">${page}</a>
 						        				</li>
 						        			</c:when>
+						        			<c:when  test="${!empty param.inputValue}">
+						        				<li class="page-item">
+						        				<a class="page-link" href="<c:url value='${servletPath}?inputValue=${param.inputValue}&checked=${param.checked}&pageNo=${page}'/>">${page}</a>
+						        				</li>
+						        			</c:when>
 						        			<c:otherwise>
 						        				<li class="page-item">
 						        				<a class="page-link" href="<c:url value='${servletPath}?pageNo=${page}'/>">${page}</a>
@@ -209,12 +210,17 @@
 						        		</c:choose> 
 						        	</c:forEach>
 						     	</c:if>
-
+						
 						        <li class="page-item">
 						         	<c:if test="${pageBean.currentPage != pageBean.totalPage && pageBean.totalPage != 0}">
 						         	<c:choose>
 						        		<c:when  test="${!empty param.partOfBody || !empty param.status}">
 						         			<a class="page-link" href="<c:url value='${servletPath}?status=${param.status}&partOfBody=${param.partOfBody}&pageNo=${pageBean.currentPage+1}' />" aria-label="Next">
+						         			<span aria-hidden="true">&raquo;</span>
+						          			</a>
+						          		</c:when>
+						          		<c:when  test="${!empty param.inputValue}">
+						         			<a class="page-link" href="<c:url value='${servletPath}?inputValue=${param.inputValue}&checked=${param.checked}&pageNo=${pageBean.currentPage+1}' />" aria-label="Next">
 						         			<span aria-hidden="true">&raquo;</span>
 						          			</a>
 						          		</c:when>
@@ -226,7 +232,7 @@
 						        	</c:choose> 
 						         	</c:if>
 						        </li>
-                      </ul>
+                          </ul>
                     </nav>
                   </div>
                     

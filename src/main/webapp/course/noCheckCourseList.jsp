@@ -105,12 +105,10 @@
                             <FORM action="<c:url value='/Course/SearchPageServlet' />" method="POST">
                             <div class="col mb-4">
                                 <div class="d-flex">
-                                  <div class="col-auto">
-                                    <label for="inputMemberId" class="col-form-label me-2">課程編號</label>
-                                  </div>
-                                  <input class="form-control me-2" id="inputMemberPhone" type="text" placeholder="Search" name="inputValue">
+                                  <input class="form-control me-2" id="inputMemberPhone" type="text" placeholder="請輸入課程編號或名稱" name="inputValue">
                                                         
                                   <div class="col-auto">
+                                    <Input type='hidden' name='checked' value='0'>
                                     <Input class="btn btn-outline-primary" type="submit" value='查詢' >
                                   </div>
                                 </div>
@@ -143,13 +141,10 @@
 		                                <td>${entry.time}</td>
 		                                <td>
 		                                <c:choose>
-							            <c:when test="${entry.checked == 1}">
-							             已審核
-							            </c:when>
-							            <c:when test="${entry.checked == 0}">
-							             未審核
-							            </c:when>
-							           </c:choose></td>
+							              <c:when test="${entry.pass == 0}">不通過</c:when> 
+										  <c:otherwise>通過</c:otherwise> 
+							           </c:choose>
+							           </td>
 		                                <td>
 		                                  <a href="<c:url value='/course/CheckingVideoDetail.do?videoId=${entry.videoId}' />" class="btn btn-outline-dark">
 		                                    <span>查看</span>
@@ -160,13 +155,18 @@
                             </tbody>
                         </table>
                     </div>
-                   <nav class="d-flex justify-content-center mt-3 mb-3">
+                  <nav class="d-flex justify-content-center mt-3 mb-3">
                           <ul class="pagination">
                            <li class="page-item">
-					               <c:if test="${pageBean.currentPage > 1}">
+						        <c:if test="${pageBean.currentPage > 1}">
 						        <c:choose>
 						        	<c:when  test="${!empty param.partOfBody}">
 							          <a class="page-link" href="<c:url value='${servletPath}?partOfBody=${param.partOfBody}&pageNo=${pageBean.currentPage-1}' />" aria-label="Previous"> 
+							          	<span aria-hidden="true">&laquo;</span>
+							          </a>
+						          </c:when>
+						          <c:when  test="${!empty param.partOfBody}">
+							          <a class="page-link" href="<c:url value='${servletPath}?inputValue=${param.inputValue}&checked=${param.checked}&pageNo=${pageBean.currentPage-1}' />" aria-label="Previous"> 
 							          	<span aria-hidden="true">&laquo;</span>
 							          </a>
 						          </c:when>
@@ -176,7 +176,7 @@
 							          </a>
 						          	</c:otherwise>
 						        </c:choose> 
-
+						        
 						         </c:if>
 						         </li>
 						       	<c:if test="${pageBean.totalPage > 1}">
@@ -187,6 +187,11 @@
 						        				<a class="page-link" href="<c:url value='${servletPath}?partOfBody=${param.partOfBody}&pageNo=${page}'/>">${page}</a>
 						        				</li>
 						        			</c:when>
+						        			<c:when  test="${!empty param.inputValue}">
+						        				<li class="page-item">
+						        				<a class="page-link" href="<c:url value='${servletPath}?inputValue=${param.inputValue}&checked=${param.checked}&pageNo=${page}'/>">${page}</a>
+						        				</li>
+						        			</c:when>
 						        			<c:otherwise>
 						        				<li class="page-item">
 						        				<a class="page-link" href="<c:url value='${servletPath}?pageNo=${page}'/>">${page}</a>
@@ -195,12 +200,17 @@
 						        		</c:choose> 
 						        	</c:forEach>
 						     	</c:if>
-
+						
 						        <li class="page-item">
 						         	<c:if test="${pageBean.currentPage != pageBean.totalPage && pageBean.totalPage != 0}">
 						         	<c:choose>
 						        		<c:when  test="${!empty param.partOfBody}">
-						         			<a class="page-link" href="<c:url value='${servletPath}?partOfBody=${param.partOfBody}&pageNo=${pageBean.currentPage+1}' />" aria-label="Next">
+						         			<a class="page-link" href="<c:url value='${servletPath}?partOfBody=${param.partOfBody}&checked=${param.checked}&pageNo=${pageBean.currentPage+1}' />" aria-label="Next">
+						         			<span aria-hidden="true">&raquo;</span>
+						          			</a>
+						          		</c:when>
+						          		<c:when  test="${!empty param.inputValue}">
+						         			<a class="page-link" href="<c:url value='${servletPath}?inputValue=${param.inputValue}&pageNo=${pageBean.currentPage+1}' />" aria-label="Next">
 						         			<span aria-hidden="true">&raquo;</span>
 						          			</a>
 						          		</c:when>
