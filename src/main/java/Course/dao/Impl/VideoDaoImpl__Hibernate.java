@@ -149,7 +149,7 @@ public class VideoDaoImpl__Hibernate implements VideoDao {
 	public String getByInputValueHql(String inputValue, String checked) {
 		String hql; 
 		String text = "'"+"%"+inputValue+"%"+"'";
-		hql = "FROM VideoBean WHERE checked = "+ checked + " AND "+ " name LIKE " +text + " OR videoId LIKE " + text;
+		hql = "FROM VideoBean WHERE checked = "+ checked + " AND  name LIKE " +text + " OR "+" checked = "+ checked  + " AND videoId LIKE " + text;
 		return hql;
 	}
 
