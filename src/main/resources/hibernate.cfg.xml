@@ -30,5 +30,7 @@
 		<!-- <mapping class="ch01.model.Department"/> -->
 		<!-- <mapping class="ch01.model.Employee"/> -->
 		<mapping class="Course.model.VideoBean"></mapping>
+		<mapping class="member.model.MemberBean"></mapping>
+		<mapping class="member.model.CoachBean"></mapping>
 	</session-factory>
 </hibernate-configuration>

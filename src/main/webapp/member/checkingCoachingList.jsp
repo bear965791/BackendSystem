@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c"   uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+        <%@ taglib prefix="c"   uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en" style="overflow-x:hidden;">
 <head>
@@ -7,8 +8,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>厝動HomeGym 後台系統</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-	<link rel='stylesheet' href="<c:url value='/course/css/form.css' />"  type='text/css' />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
@@ -56,112 +55,105 @@
                     <div class="nav d-flex align-items-center border-bottom mb-4">
                         <div class="nav-link text-dark">
                             <i class="bx bx-video"></i>
-                            <span>課程管理</span>
+                            <span>會員管理</span>
                         </div>
-                        <div class="nav-link text-dark">
-                          <i class="fa fa-angle-right" aria-hidden="true"></i>
-                          <span class="ms-3 fw-bold">未審核課程</span>
-                        </div>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                        <span class="ms-3 fw-bold">教練審核</span>
                     </div>
+                    
                   </nav>
 
                   <div class="container-fluid p-0">
-                    <div class="mb-5">
-                        <ul class="nav nav-tabs border-0 border-bottom">
-                   			<li  class="nav-item ">
-                                <a class="nav-link text-dark " href="<c:url value='/backStage/checkedCoursePage'/>">已審核課程</a>
-                            </li >
-                            <li class="nav nav-tabs border-0">
-                                <a class="nav-link active fw-bold " href="<c:url value='/backStage/notCheckCoursePage' />">未審核課程</a>
-                            </li>
-                        </ul>
-                        <!-- 查詢列 -->
-                        
-                        <div class="row row-cols-3 border-0 py-3 ps-4 pe-4">
-                      <FORM action="<c:url value='/Course/CategoryPage.do' />" method="GET">                        
-                
-                            <div class="col mb-4">
-                                <div class="d-flex">
-                                  <div class="col-auto">
-                                    <label for="inputMemberId" class="col-form-label ">課程分類</label>
-                                  </div>
-                                  <select class="form-select ms-3 me-2" name="partOfBody">
-                                    <option  value="0" >全部</option>
-                                    <option value="全身">全身</option>
-                                    <option value="背">背 </option>
-                                    <option value="二頭">二頭</option>
-                                    <option value="胸">胸</option>
-                                    <option value="核心">核心</option>
-                                    <option value="腿">腿</option>
-                                  </select> 
-                         			<input class="btn btn-outline-primary" type="submit" value='查詢'>
-                                </div>
+                  <div class="mb-5">
+                    <ul class="nav nav-tabs border-0 border-bottom ">
+                      <li  class="nav-item ">
+                          <a class="nav-link text-dark " href="<c:url value='/Member/MemberListPageServlet' />">會員列表</a>
+                      </li >
+                      <li class="nav nav-tabs border-0">
+                          <a class="nav-link  active fw-bold" href="<c:url value='/Member/CoachListPage' />">教練審核</a>
+                      </li>
+                    </ul>
+
+                    <!-- 查詢列 -->
+                    <div class="row row-cols-3 border-0 py-3 ps-4 pe-4">
+                     <FORM class="col-5" action="<c:url value='/Member/EmailSearchPageServlet' />" method="GET"> 
+                        <div class="col mb-4">
+                          <div class="d-flex">
+                            <div class="col-auto">
+                              <label for="inputMemberId" class="col-form-label me-2">會員信箱</label>
                             </div>
-                            </FORM>
-                            <FORM action="<c:url value='/Course/SearchPageServlet' />" method="POST">
-                            <div class="col mb-4">
-                                <div class="d-flex">
-                                  <input class="form-control me-2" id="inputMemberPhone" type="text" placeholder="請輸入課程編號或名稱" name="inputValue">
-                                                        
-                                  <div class="col-auto">
-                                    <Input type='hidden' name='checked' value='0'>
-                                    <Input class="btn btn-outline-primary" type="submit" value='查詢' >
-                                  </div>
-                                </div>
+                            <input class="form-control me-2" id="inputMemberId" type="text" placeholder="請輸入會員信箱" name="inputEmail">
+                            <div class="col-auto">
+                              <button class="btn btn-outline-primary" type="submit">查詢</button>
                             </div>
-                     </FORM>                                                  
+                          </div>
                         </div>
-                        <!-- 表格 -->
-                        <table class="table table-striped mb-0 text-center">
-                            <thead>
-                              <tr>
-                                <th scope="col">課程名稱</th>
-                                <th scope="col">課程編號</th>
-                                <th scope="col">課程分類</th>
-                                <th scope="col">教練</th>
-                                <th scope="col">售價</th>
-                                <th scope="col">申請時間</th>
-                                <th scope="col">申請狀態</th>
-                                <th scope="col"></th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <c:forEach var="entry"  items="${pageBean.videoBean}" > 
-		                              <!-- 表格項目動態新增 -->
-		                              <tr class="align-middle">
-		                                <th scope="row ">${entry.name}</th>
-		                                <td>${entry.videoId}</td>
-		                                <td>${entry.partOfBody}</td>
-		                                <td>${entry.coach}</td>
-		                                <td>${entry.price}</td>
-		                                <td>${entry.time}</td>
+                        </FORM>
+                         <FORM class="col-5" action="<c:url value='/Member/SearchPageServlet' />" method="GET"> 
+                        <div class="col mb-4">
+                          <div class="d-flex">
+                            <div class="col-auto">
+                              <label for="inputMemberName" class="col-form-label me-2">會員名稱</label>
+                            </div>
+                            <input class="form-control me-2" id="inputMemberName" type="text" placeholder="請輸會員名稱" name="inputValue">
+                            <div class="col-auto">
+                            <Input type='hidden' name='checked' value='0'>
+                              <Input class="btn btn-outline-primary" type="submit" value='查詢' >
+                            </div>
+                          </div>
+                        </div>
+                        </FORM>
+                    </div>
+                    <!-- 表格 -->
+                    <table class="table table-striped align-middle mb-0 text-center" >
+                        <thead>
+                          <tr>
+                            <th scope="col">會員編號</th>
+                            <th scope="col">會員名稱</th>
+                            <th scope="col">會員信箱</th>
+                            <th scope="col">教練專長</th>
+                            <th scope="col">申請時間</th>
+                            <th scope="col">申請狀態</th>
+                            <th scope="col">教練詳細內容 </th>
+                            
+                          </tr>
+                        </thead>
+                        <tbody>
+                        <c:forEach var="entry"  items="${pageBean.memberBean}" > 
+                        	<c:choose>
+								<c:when test="${entry.coach.checked == 0}">
+									<tr>
+			                            <td>${entry.memberId}</td>
+			                            <td>${entry.name}</td>
+			                            <td>${entry.email}</td>
+			                            <td>${entry.coach.skill}</td>
+			                            <td>${entry.coach.applyTime}</td>
 		                                <td>
 		                                <c:choose>
-							              <c:when test="${entry.checked == 0}">待審核</c:when> 
+							              <c:when test="${entry.coach.checked == 0}">待審核</c:when> 
 										  <c:otherwise>已審核</c:otherwise> 
 							           </c:choose>
-							           </td>
-		                                <td>
-		                                  <a href="<c:url value='/course/CheckingVideoDetail.do?videoId=${entry.videoId}' />" class="btn btn-outline-dark">
-		                                    <span>審核</span>
-		                                  </a>
-		                                </td>
-		                              </tr>
-		                         </c:forEach>
-                            </tbody>
-                        </table>
-                    </div>
-                  <nav class="d-flex justify-content-center mt-3 mb-3">
+			                            <td><a href="<c:url value='/CoachDetalPageServlet?memberId=${entry.memberId}' />" class="btn btn-outline-dark">審核</a></td>
+			                        </tr>
+								</c:when> 
+								<c:otherwise></c:otherwise> 
+							</c:choose>
+                          
+                        </c:forEach>
+                        </tbody>
+                      </table>
+                    <!-- 分頁 -->
+                   	<nav class="d-flex justify-content-center mt-3 mb-3">
                           <ul class="pagination">
                            <li class="page-item">
 						        <c:if test="${pageBean.currentPage > 1}">
 						        <c:choose>
-						        	<c:when  test="${!empty param.partOfBody}">
-							          <a class="page-link" href="<c:url value='${servletPath}?partOfBody=${param.partOfBody}&pageNo=${pageBean.currentPage-1}' />" aria-label="Previous"> 
+						        	<c:when  test="${!empty param.inputEmail}">
+							          <a class="page-link" href="<c:url value='${servletPath}?status=${param.inputEmail}&pageNo=${pageBean.currentPage-1}' />" aria-label="Previous"> 
 							          	<span aria-hidden="true">&laquo;</span>
 							          </a>
 						          </c:when>
-						          <c:when  test="${!empty param.inputValue}">
+						          <c:when  test="${!empty param.inputValue || !empty param.checked}">
 							          <a class="page-link" href="<c:url value='${servletPath}?inputValue=${param.inputValue}&checked=${param.checked}&pageNo=${pageBean.currentPage-1}' />" aria-label="Previous"> 
 							          	<span aria-hidden="true">&laquo;</span>
 							          </a>
@@ -178,9 +170,9 @@
 						       	<c:if test="${pageBean.totalPage > 1}">
 						       		<c:forEach var="page"  begin="1" end="${pageBean.totalPage}" step="1" >                  
 						        		<c:choose>
-						        			<c:when  test="${!empty param.partOfBody}">
+						        			<c:when  test="${!empty param.inputEmail}">
 						        				<li class="page-item">
-						        				<a class="page-link" href="<c:url value='${servletPath}?partOfBody=${param.partOfBody}&pageNo=${page}'/>">${page}</a>
+						        				<a class="page-link" href="<c:url value='${servletPath}?inputEmail=${param.inputEmail}&pageNo=${page}'/>">${page}</a>
 						        				</li>
 						        			</c:when>
 						        			<c:when  test="${!empty param.inputValue}">
@@ -200,13 +192,13 @@
 						        <li class="page-item">
 						         	<c:if test="${pageBean.currentPage != pageBean.totalPage && pageBean.totalPage != 0}">
 						         	<c:choose>
-						        		<c:when  test="${!empty param.partOfBody}">
-						         			<a class="page-link" href="<c:url value='${servletPath}?partOfBody=${param.partOfBody}&checked=${param.checked}&pageNo=${pageBean.currentPage+1}' />" aria-label="Next">
+						        		<c:when  test="${!empty param.inputEmail}">
+						         			<a class="page-link" href="<c:url value='${servletPath}?inputEmail=${param.inputEmail}&pageNo=${pageBean.currentPage+1}' />" aria-label="Next">
 						         			<span aria-hidden="true">&raquo;</span>
 						          			</a>
 						          		</c:when>
 						          		<c:when  test="${!empty param.inputValue}">
-						         			<a class="page-link" href="<c:url value='${servletPath}?inputValue=${param.inputValue}&pageNo=${pageBean.currentPage+1}' />" aria-label="Next">
+						         			<a class="page-link" href="<c:url value='${servletPath}?inputValue=${param.inputValue}&checked=${param.checked}&pageNo=${pageBean.currentPage+1}' />" aria-label="Next">
 						         			<span aria-hidden="true">&raquo;</span>
 						          			</a>
 						          		</c:when>
@@ -219,12 +211,12 @@
 						         	</c:if>
 						        </li>
                           </ul>
-                    </nav>
+                      </nav>
                   </div>
-                    
                 </div>
             </div>
         </div>
+      </div>  
     </section>
 
 
